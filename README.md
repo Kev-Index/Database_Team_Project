@@ -1,5 +1,12 @@
 ## Database Team Project
 
+### Contributors
+Christoforo, Jake
+Liu, Kevin 
+Pallotta, Andrea
+Sause, Daniel
+Wesel, Blake
+
 ### Program Description
 This is a program consisting of a Data Layer and an optional Presentation Layer which accepts submissions to an academic conference. 
 
