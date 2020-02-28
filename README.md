@@ -17,9 +17,9 @@ This is a program consisting of a Data Layer and an optional Presentation Layer 
       - [] a. setPassword()
       - [] a. login()
 - [] 2. Design
-- [] 3. Readability
+- [x] 3. Readability
 - [] 4. Documentation
 
 ### Optional
-- [x] 1. Presentation Layer
-- [x] 2. Additional Useful Methods
+- [] 1. Presentation Layer
+- [] 2. Additional Useful Methods
