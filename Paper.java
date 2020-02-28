@@ -1,7 +1,11 @@
 /*
  * @course ISTE.330.01
  * @version Project.01
- * @author Andrea Pallotta, Kevin Liu, Blake Wesel
+ * @author Christoforo, Jake
+           Liu, Kevin 
+           Pallotta, Andrea
+           Sause, Daniel
+           Wesel, Blake
  */
  
 public class Paper
