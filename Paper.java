@@ -1,4 +1,4 @@
-/*
+/**
  * @course ISTE.330.01
  * @version Project.01
  * @author Christoforo, Jake
@@ -24,12 +24,12 @@ public class Paper
    private String submissionAbstract;
    private int submissionType;
 
-   /*
-      @param none
-      default constructor for Paper object
-      initializes blank or unharmful values
-      @return none
-   */
+   /**
+    *  @param none
+    *  default constructor for Paper object
+    *  initializes blank or unharmful values
+    *  @return none
+    */
    public Paper()
    {
       paperId = 0;
@@ -39,11 +39,11 @@ public class Paper
       submissionType = 0;
    }
    
-   /*
-      @param (int)
-      returns all info for a specific paper EXCEPT filename
-      @return String
-   */
+   /**
+    *  @param (int)
+    *  returns all info for a specific paper EXCEPT filename
+    *  @return String
+    */
    public String getPaper(int _paperId)
    {
       //create temp String to store full names
@@ -83,19 +83,22 @@ public class Paper
                "\nSubmission Type:" + submissionType +
                "\nSubjects: " + tempSubs +
                "\nCo-Authors:" + tempNames);
-
-
-
    }
    
-   /*
-      @param (int,String,String,int,String,String[],String[],String[])
-      default constructor for Paper object
-      @return none
-   */
+   /**
+    *  @param (int,String,String,int,String,String[],String[],String[])
+    *  default constructor for Paper object
+    *  @return none
+    */
    public void setPaper(int _paperId, String _submissionTitle, String _submissionAbstract, int _submissionType, String _filename, String[] _subjects, String[] _firstNames, String[] _lastnames)
    {
-   
+      paperId = _paperId;
+      submissionTitle = _submissionTitle;
+      submissionType = _submissionType;
+      filename = _filename;
+      subjects = _subjects;
+      firstNames = _firstNames;
+      lastnames = _lastnames;
    }
    
    //accessors
