@@ -1,4 +1,4 @@
-/*
+/**
  * @course ISTE.330.01
  * @version Project.01
  * @author Christoforo, Jake
@@ -8,141 +8,141 @@
            Wesel, Blake
  */
  
-public class User
-{
+public class User {
    //User object info
+   private int    userId;
    private String lastName;
    private String firstName;
    private String email;
    private String pswd;
    private String affiliation;
    
-   /*
-      @param none
-      default constructor for User object
-      initializes blank or unharmful values
-      @return none
+   /**
+    * @param none
+    * default constructor for User object
+    * initializes blank or unharmful values
+    * @return none
    */
-   public User()
-   {
-      lastName = "";
-      firstName = "";
-      String email = "";
-      String pswd = "";
+   public User() {
+      userId             = 0;
+      lastName           = "";
+      firstName          = "";
+      String email       = "";
+      String pswd        = "";
       String affiliation = "";
    }
    
-   /*
-      @param (int)
-      returns all papers for specified user
-      @return Paper[]
+   /**
+    * @param (int) - The user ID
+    * returns all papers for specified user
+    * @return Paper[]
    */
-   public Paper[] getPapers(int _userId)
-   {
+   public Paper[] getPapers(int userId) {
       return null;
    }
    
-   /*
-      @param none
-      returns attributes of User EXCEPT password
-      @return String
+   /**
+    * @param none
+    * returns attributes of User EXCEPT password - FORMAT(userId, lastName, firstName, email, affiliation)
+    * @return String
    */
-   public String getUser()
-   {
-      return "";
+   public String[] getUser() {
+      String[] info = new String[5];
+      info[0] = userId;
+      info[1] = lastName;
+      info[2] = firstName;
+      info[3] = email;
+      info[4] = affiliation;
+      
+      return info;
    }
    
-   /*
-      @param (String,String,String,String,String)
-      updates User attributes to db
-      creates new entry if no matching userId
-      @return none
+   /**
+    * @param (int,String,String,String,String,String) - userId, lastName, firstName, email, pswd, affiliation
+    * updates User attributes to db
+    * creates new entry if no matching userId
+    * @return none
    */
-   public void setUser(String _lastName, String _firstName, String _email, String _pswd, String _affiliation)
-   {
+   public void setUser(int userId, String lastName, String firstName, String email, String pswd, String affiliation) {
+      if (userId == 0 || userId == null) {
+         // create a new "entry" - whatever that means
+      } else {
+         this.userId      = userId;
+         this.lastName    = lastName;
+         this.firstName   = firstName;
+         this.email       = email;
+         this.pswd        = pswd;
+         this.affiliation = affiliation;
+      }
+   }
+   
+   /** 
+    * @param (String) - email
+    * creates new password and emails to specified address
+    * ONLY GOOD FOR 5 MINUTES      
+    * @return none
+   */
+   public void resetPassword(String email) {
       
    }
    
-   /*
-      @param (String)
-      creates new password and emails to specified address
-      ONLY GOOD FOR 5 MINUTES      
-      @return none
+   /** 
+    * @param (String) - password
+    * changes password of currently logged in user to param
+    * @return none
    */
-   public void resetPassword(String _email)
-   {
-   
+   public void setPassword(String pswd) {
+      this.pswd = pswd;
    }
    
-   /*
-      @param (String)
-      changes password of currently logged in user to param
-      @return none
+   /**
+    * @param (String,String) - Email and password
+    * IF good credentials, returns token
+    * @return token
    */
-   public void setPassword(String _password)
-   {
-   
-   }
-   
-   /*
-      @param (String,String)
-      IF good credentials, returns token
-      @return token?
-   */
-   public void login(String _email, String _password)
-   {
+   public void login(String email, String password) {
    
    }
    
    //accessors
-   public String getLastName()
-   {
+   public String getLastName() {
       return lastName;
    }
    
-   public String getFirstName()
-   {
+   public String getFirstName() {
       return firstName;
    }
    
-   public String getEmail()
-   {
+   public String getEmail() {
       return email;
    }
    
-   public String getPswd()
-   {
+   public String getPswd() {
       return pswd;
    }
    
-   public String getAffil()
-   {
+   public String getAffil() {
       return affiliation;
    }
    
    //mutators
-   public void setLastName(String _lastName)
-   {
-      lastName = _lastName;
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
    }
    
-   public void setFirstName(String _firstName)
-   {
-      lastName = _firstName;
+   public void setFirstName(String firstName) {
+      this.lastName = firstName;
    }
    
-   public void setEmail(String _email)
-   {
-      email = _email;
+   public void setEmail(String email) {
+      this.email = email;
    }
    
-   public void setPswd(String _pswd)
-   {
-      pswd = _pswd;
+   public void setPswd(String pswd) {
+      this.pswd = pswd;
    }
    
-   public void setAffil(String _affiliation)
-   {
-      affiliation = _affiliation;
+   public void setAffil(String affiliation) {
+      this.affiliation = affiliation;
    }
 }
