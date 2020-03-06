@@ -27,9 +27,9 @@ public class User
    {
       lastName = "";
       firstName = "";
-      String email = "";
-      String pswd = "";
-      String affiliation = "";
+      email = "";
+      pswd = "";
+      affiliation = "";
    }
    
    /*
