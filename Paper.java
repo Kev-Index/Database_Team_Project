@@ -10,20 +10,31 @@
  */
  
 public class Paper {
-   //Paper object info
-   private int      paperId;
-   private String   filename;
-   private String[] subjects;
+
+   // Paper object info
+   private int paperId; //paperId
+   private String filename; //title
+   private String fileId; //fileId
+   private String[] subjects; //array of subjectName
+   private String[] track; //track
+   private String status; //status
+   private String tStatus; //tentativeStatus
    
-   //co-authors info
+   // Co-authors info
    private String[] firstnames;
    private String[] lastnames;
    
-   //submission info
-   private String   submissionTitle;
-   private String   submissionAbstract;
-   private int      submissionType;
+   // Submission info
+   private String submissionTitle;
+   private String submissionAbstract; //abstract
+   private int submissionType; //submissionType
+   private String submitterId; //submitterId
+           
+   // Paper Data to be Changed
+   private ArrayList<String> data = new ArrayList<String>();
 
+           
+           
    /**
     *  @param none
     *  default constructor for Paper object
@@ -38,6 +49,8 @@ public class Paper {
       submissionType = 0;
    }
    
+           
+           
    /**
     *  @param (int) - paperId
     *  returns all info for a specific paper EXCEPT filename
@@ -46,7 +59,9 @@ public class Paper {
    public String getPaper(int paperId) {
       // Access DB and do a search query for paper ID
    }
-   
+  
+           
+           
    /**
     *  @param (int,String,String,int,String,String[],String[],String[]) - paperId, submissionTitle, submissionAbstract, submissionType, filename, subjects, firstnames, lastnames
     *  default constructor for Paper object
@@ -70,7 +85,9 @@ public class Paper {
       
    }
    
-   // accessors
+           
+           
+   // Accessors
    public int getId() {
       return paperId;
    }
@@ -103,7 +120,9 @@ public class Paper {
       return lastnames;
    }
    
-   // mutators
+           
+           
+   // Mutators
    public void setId(int paperId) {
       this.paperId = paperId;
    }
