@@ -10,27 +10,19 @@
  
 public class Paper
 {
-   // Paper object info
-   private int paperId; //paperId
-   private String filename; //title
-   private String fileId; //fileId
-   private String[] subjects; //array of subjectName
-   private String[] track; //track
-   private String status; //status
-   private String tStatus; //tentativeStatus
+   //Paper object info
+   private int paperId;
+   private String filename;
+   private String[] subjects;
    
-   // Co-authors info
+   //co-authors info
    private String[] firstnames;
    private String[] lastnames;
    
-   // Submission info
+   //submission info
    private String submissionTitle;
-   private String submissionAbstract; //abstract
-   private int submissionType; //submissionType
-   private String submitterId; //submitterId
-           
-   // Paper Data to be Changed
-   private ArrayList<String> data = new ArrayList<String>();
+   private String submissionAbstract;
+   private int submissionType;
 
    /*
       @param none
@@ -48,28 +40,52 @@ public class Paper
    }
    
    /*
-      @param (int,MySQLDatabase)
+      @param (int)
       returns all info for a specific paper EXCEPT filename
       @return String
    */
-   public String getPaper(int _paperId, MySQLDatabase mysqldb)
+   public String getPaper(int _paperId)
    {
-      try
+      //create temp String to store full names
+      String tempNames = "";
+      //iterate through length of array for names
+      for (int i = 0; i < firstnames.length; i++)
       {
-      
-         String query = "SELECT * FROM papers WHERE paperId = ?";
-         data.add(getId());
-         
-         //getData() method will print out values
-         mysqldb.getData(query,data);
-         data.clear();
-         
-      }  
-      catch (Exception _e)
-      {
-         new DLException(_e,"Operation Failed When Retrieving Paper");
-         
+         //concatenate first name and last name together
+         if (i == 0)
+         {
+            tempNames += (firstnames[i] + " " + lastnames[i]);
+         }
+         else
+         {
+            tempNames += (", " + firstnames[i] + " " + lastnames[i]);
+         }
       }
+      
+      //create temp String to store subjects
+      String tempSubs = "";
+      for (int i = 0; i < subjects.length; i++)
+      {
+         //contatenate subjects into one String for display
+         if (i == 0)
+         {
+            tempSubs += subjects[i];
+         }
+         else
+         {
+            tempNames += (", " + subjects[i]);
+         }
+      }
+   
+      return ("Paper ID:" + paperId +
+               "\nSubmission Title:" + submissionTitle +
+               "\nSubmission Abstract:" + submissionAbstract +
+               "\nSubmission Type:" + submissionType +
+               "\nSubjects: " + tempSubs +
+               "\nCo-Authors:" + tempNames);
+
+
+
    }
    
    /*
