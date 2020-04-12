@@ -57,7 +57,22 @@ public class Paper {
     *  @return String
     */
    public String getPaper(int paperId) {
-      // Access DB and do a search query for paper ID
+      try
+      {
+      
+         String query = "SELECT * FROM papers WHERE paperId = ?";
+         data.add(getId());
+         
+         //getData() method will print out values
+         mysqldb.getData(query,data);
+         data.clear();
+         
+      }  
+      catch (Exception _e)
+      {
+         new DLException(_e,"Operation Failed When Retrieving Paper");
+         
+      }
    }
   
            
