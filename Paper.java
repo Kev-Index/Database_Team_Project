@@ -10,19 +10,27 @@
  
 public class Paper
 {
-   //Paper object info
-   private int paperId;
-   private String filename;
-   private String[] subjects;
+   // Paper object info
+   private int paperId; //paperId
+   private String filename; //title
+   private String fileId; //fileId
+   private String[] subjects; //array of subjectName
+   private String[] track; //track
+   private String status; //status
+   private String tStatus; //tentativeStatus
    
-   //co-authors info
+   // Co-authors info
    private String[] firstnames;
    private String[] lastnames;
    
-   //submission info
+   // Submission info
    private String submissionTitle;
-   private String submissionAbstract;
-   private int submissionType;
+   private String submissionAbstract; //abstract
+   private int submissionType; //submissionType
+   private String submitterId; //submitterId
+           
+   // Paper Data to be Changed
+   private ArrayList<String> data = new ArrayList<String>();
 
    /*
       @param none
@@ -40,52 +48,28 @@ public class Paper
    }
    
    /*
-      @param (int)
+      @param (int,MySQLDatabase)
       returns all info for a specific paper EXCEPT filename
       @return String
    */
-   public String getPaper(int _paperId)
+   public String getPaper(int _paperId, MySQLDatabase mysqldb)
    {
-      //create temp String to store full names
-      String tempNames = "";
-      //iterate through length of array for names
-      for (int i = 0; i < firstnames.length; i++)
+      try
       {
-         //concatenate first name and last name together
-         if (i == 0)
-         {
-            tempNames += (firstnames[i] + " " + lastnames[i]);
-         }
-         else
-         {
-            tempNames += (", " + firstnames[i] + " " + lastnames[i]);
-         }
-      }
       
-      //create temp String to store subjects
-      String tempSubs = "";
-      for (int i = 0; i < subjects.length; i++)
+         String query = "SELECT * FROM papers WHERE paperId = ?";
+         data.add(getId());
+         
+         //getData() method will print out values
+         mysqldb.getData(query,data);
+         data.clear();
+         
+      }  
+      catch (Exception _e)
       {
-         //contatenate subjects into one String for display
-         if (i == 0)
-         {
-            tempSubs += subjects[i];
-         }
-         else
-         {
-            tempNames += (", " + subjects[i]);
-         }
+         new DLException(_e,"Operation Failed When Retrieving Paper");
+         
       }
-   
-      return ("Paper ID:" + paperId +
-               "\nSubmission Title:" + submissionTitle +
-               "\nSubmission Abstract:" + submissionAbstract +
-               "\nSubmission Type:" + submissionType +
-               "\nSubjects: " + tempSubs +
-               "\nCo-Authors:" + tempNames);
-
-
-
    }
    
    /*
