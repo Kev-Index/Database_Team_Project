@@ -1,27 +1,332 @@
+/*
+ * @course ISTE.330.01
+ * @version Project.01
+ * @author Christoforo, Jake
+           Liu, Kevin 
+           Pallotta, Andrea
+           Sause, Daniel
+           Wesel, Blake
+ */
+
 import java.sql.*;
+import java.sql.ResultSetMetaData;
 import java.util.*;
 
+// start class MySQLDatabase
 public class MySQLDatabase {
 
-   private String host = "";
-   private String user = "";
-   private String password = "";
-   private Connection conn = null;  
-   
-   public MySQLDatabase() {
-      // host = "jdbc:mysql://simon.ist.rit.edu:3306/networx_ser";
-      host = "jdbc:mysql://localhost/csm?autoReconnect=true&useSSL=false";
-   	  user = "root";
-   	  password = "yourpassword";
-   }
-   
-   public MySQLDatabase(String host, String user, String password) {
-      this.host = host;
-      this.user = user;
+
+
+  // Attributes
+  private Connection conn = null;
+  private String id;
+  private String password;
+  private String uri;
+  private String driver;
+
+
+
+  // constructor that instantiate the driver and the connection parameters
+  // and calls the methods to connect and close the connection
+  public MySQLDatabase() {
+    id = "root";
+    password = ""; // your password
+    uri = "jdbc:mysql://localhost:3306/csm";
+    driver = "com.mysql.jdbc.Driver";
+
+    try {
+      Class.forName(driver);
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println("|    Driver loaded      |");
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+    }
+
+    catch (ClassNotFoundException cnfe) {
+      System.out.println("Driver not found.");
+      new DLException(cnfe, "ClassNotFoundException", "Driver not found. Check your driver", uri, driver);
+    }
+
+    catch (Exception e) {
+      System.out.println("Error while connecting to the server.");
+      new DLException(e, "Exception", "Issue while connecting to the server. Check your URI and credentials", uri,
+          driver);
+    }
+
+  } // end of constructor
+
+  public MySQLDatabase(String uri, String id, String password) {
+      
+      this.uri = uri;
+      this.id = id;
       this.password = password;
-   }
+      
+   } // end of constructor
+
+
+
+  /**
+   * method that creates the connection and starts the connection
+   * 
+   * @return true if the connection is successful
+   */
+  public boolean connect() {
+    try {
+      conn = DriverManager.getConnection(uri, id, password);
+      // use the following to throw an exception
+      // conn = DriverManager.getConnection(wrongUri, id, password);
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println("| Connected to MySQLDatabase |");
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      return true;
+    }
+
+    catch (SQLException sqle) {
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println("| Error connecting to the MySQLDatabase |");
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      new DLException(sqle, "SQLException", "Issue while connection to the sql server. Check your URI and credentials",
+          uri, driver);
+      return false;
+    }
+
+    catch (Exception e) {
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println("| Error connecting to MySQLDatabase |");
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      new DLException(e, "Exception", "Issue while connection to the sql server. Check your URI and credentials", uri,
+          driver);
+      return false;
+    }
+
+  } // end of connect()
+
+  /**
+   * method that closes the connection
+   * 
+   * @return true if the connection is successfully closed
+   */
+  public boolean close() {
+    try {
+      if (conn != null) {
+        conn.close();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("| Disconnected to MySQLDatabase |");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        return true;
+      }
+
+      return false;
+
+    }
+
+    catch (SQLException sqle) {
+
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println("| Error disconnecting from MySQLDatabase |");
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      new DLException(sqle, "SQLException", "Issue while closing to the sql server. Check your connection", uri,
+          driver);
+      return false;
+    }
+
+    catch (Exception e) {
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println("| Error disconnecting from MySQLDatabase |");
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      new DLException(e, "Exception", "Issue while closing to the sql server. Check your connection", uri, driver);
+      return false;
+    }
+
+  } // end of close()
+
+  /**
+   * Method that executes a preparedStatement and returns a 2d arraylist of data
+   * and metadata
+   * 
+   * @param query
+   * @param values
+   */
+  public ArrayList<ArrayList<String>> getData(String query, String... values) {
+    ArrayList<ArrayList<String>> wrapperList = new ArrayList<ArrayList<String>>();
+    ArrayList<String> valueList = new ArrayList<String>();
+    ArrayList<String> nameList = new ArrayList<String>();
+    ArrayList<String> sizeList = new ArrayList<String>();
+
+    try {
+      PreparedStatement pstmt = prepare(query, values);
+      ResultSet rs = pstmt.executeQuery();
+      ResultSetMetaData rsmd = rs.getMetaData();
+      int columnsNumber = rsmd.getColumnCount();
+      for (int i = 1; i <= columnsNumber; i++) {
+        nameList.add(rsmd.getColumnName(i));
+        sizeList.add(rsmd.getColumnName(i).length() + "");
+      }
+
+      wrapperList.add((ArrayList<String>) nameList.clone());
+      wrapperList.add((ArrayList<String>) sizeList.clone());
+
+      while (rs.next()) {
+        for (int i = 1; i <= columnsNumber; i++) {
+          valueList.add(rs.getString(i));
+          if (Integer.parseInt(wrapperList.get(1).get(i - 1)) < rs.getString(i).length()) {
+            wrapperList.get(1).set(i - 1, rs.getString(i).length() + "");
+          }
+        }
+
+        wrapperList.add((ArrayList<String>) valueList.clone());
+        valueList.clear();
+      }
+      pstmt.close();
+    }
+
+    catch (SQLException sqle) {
+      System.out.println("Issue while executing the query. Check your connection and query");
+      new DLException(sqle, "SQLException", "Issue while executing the query. Check your connection and query", uri,
+          driver, query);
+      sqle.printStackTrace();
+      return null;
+    }
+
+    catch (Exception e) {
+      System.out.println("Issue while executing the query. Check your connection and query");
+      new DLException(e, "Exception", "Issue while executing the query. Check your connection and query", uri, driver,
+          query);
+      e.printStackTrace();
+      return null;
+
+    }
+
+    return wrapperList;
+
+  } // end of getData
+
+  public ArrayList<ArrayList<String>> getData(String sqlQuery, ArrayList<String> vals) throws DLException{
+
+     connect();
+     ArrayList<ArrayList<String>> rowCollection = new ArrayList<ArrayList<String>>();
+     try {
+        PreparedStatement prepStmt = prepare(sqlQuery, vals);
+        ResultSet rs = prepStmt.executeQuery();
+        ResultSetMetaData rsmeta = rs.getMetaData();
+         
+        int numCols = rsmeta.getColumnCount();
+        // boolean headingsAdded = false;
+         
+        while ( rs.next() ) {
+           ArrayList<String> rowList = new ArrayList<String>();
+           // ArrayList<String> nameList = new ArrayList<String>();
+           // ArrayList<String> sizeList = new ArrayList<String>();
+                              
+                        
+           for (int i = 0; i < numCols; i++) {
+              String data = rs.getString(i+1);
+              rowList.add(data);
+           }
+            
+           rowCollection.add(rowList);
+        }
+     } catch(SQLException e) { 
+        System.out.println("Error: failure to accomplish task.");
+        ArrayList<String> logMessages = new ArrayList<String>();
+        logMessages.add("Exception in the getData method");
+        logMessages.add("User: " + id);
+        logMessages.add("SQL statement: " + sqlQuery);
+         
+        throw new DLException(e, logMessages);
+         
+     } catch(Exception ex) {}
+
+     close();
+      
+     return rowCollection;
+  }
+
+  /**
+   * Method that executes a preparedStatement and returns an the number of rows
+   * affected
+   * 
+   * @param query
+   * @param values
+   */
+  public int setData(String query, String... values) {
+    int rc = executeStmt(query, values);
+    return rc;
+  } // end of setData
+
+  public int setData(String sqlStmnt) throws DLException{
+      
+      int numAffected = -1;
+      try {
+         Statement stmnt = conn.createStatement();
+         
+         numAffected = stmnt.executeUpdate(sqlStmnt);
+      } catch(SQLException e) { 
+         numAffected = -1;
+         System.out.println("Error: failure to accomplish task.");
+         
+         ArrayList<String> logMessages = new ArrayList<String>();
+         logMessages.add("Exception in the setData method");
+         logMessages.add("User: " + id);
+         logMessages.add("SQL statement: " + sqlStmnt);
+         
+         throw new DLException(e, logMessages);
+         
+      } catch(Exception ex) {}
+      
+      return numAffected;
+  }
    
-   private PreparedStatement prepare(String queryString, ArrayList<String> vals) throws DLException {
+  public int setData(String sqlStmnt, ArrayList<String> vals) throws DLException {
+      
+      int numAffected = -1;
+      try {
+         numAffected = executeStmt(sqlStmnt, vals);
+      } catch(Exception e) { 
+         numAffected = -1;
+         System.out.println("Error: failure to accomplish task.");
+         
+         ArrayList<String> logMessages = new ArrayList<String>();
+         logMessages.add("Exception in the setData method");
+         logMessages.add("User: " + id);
+         logMessages.add("SQL statement: " + sqlStmnt);
+         
+         throw new DLException(e, logMessages);
+      }   
+      
+      return numAffected;
+   
+  }
+
+  /**
+   * Method that creates and returns a prepared statement
+   * 
+   * @param query
+   * @param values
+   */
+  private PreparedStatement prepare(String query, String... values) {
+
+    try {
+      int counter = 1;
+      PreparedStatement pstmt = conn.prepareStatement(query);
+      for (String value : values) {
+        pstmt.setString(counter, value);
+        counter++;
+      }
+
+      return pstmt;
+    }
+
+    catch (SQLException sqle) {
+      System.out.println("Issue while creating the statement. Check your connection and values");
+      new DLException(sqle, "SQLException", "Issue while executing the query. Check your connection and query", uri,
+          driver, query);
+      return null;
+    }
+
+  } // end of prepare
+
+  private PreparedStatement prepare(String queryString, ArrayList<String> vals) throws DLException {
       PreparedStatement stmt = null;
       
       try {
@@ -40,190 +345,40 @@ public class MySQLDatabase {
          
       }
       return stmt;
-   }
+  }
 
-   public boolean connect() throws DLException {
-      boolean didItWork = false;
-      try {
-         conn = DriverManager.getConnection(host, user, password);
-         didItWork = true;
-      } catch(SQLException e){
-         didItWork = false;
-         System.out.println("Error: failure to accomplish task.");
-         
-         ArrayList<String> logMessages = new ArrayList<String>();
-         logMessages.add("Exception in the connect method");
-         logMessages.add("User: " + user);
-         logMessages.add("Host: " + host);
-         
-         throw new DLException(e, logMessages);
-         
-         
-      } catch(Exception ex) { }
-      return didItWork;
-   }
-   
-   public boolean close() throws DLException{
-      boolean didItWork = false;
-      if(conn != null) {
-         try {
-            conn.close();
-            didItWork=true;
-         } catch(SQLException e) {
-            didItWork=false;
-            System.out.println("Error: failure to accomplish task.");
-            
-            
-            throw new DLException(e);
-            
-         } catch(Exception ex) {}
-      }
-      return didItWork;
-   }
-      
-   public ArrayList<ArrayList<String>> getData(String sqlStmnt, boolean includeColumnData) throws DLException{
-      ArrayList<ArrayList<String>> rowCollection = new ArrayList<ArrayList<String>>();
-      try {
-         Statement stmnt = conn.createStatement();
-         ResultSet rs = stmnt.executeQuery(sqlStmnt);
-         
-         ResultSetMetaData rsmeta = rs.getMetaData();
-         
-         int numCols = rsmeta.getColumnCount();
-         
-         boolean headingsAdded = false;
-         
-         while ( rs.next() ) {
-            ArrayList<String> rowList = new ArrayList<String>();
-            ArrayList<String> nameList = new ArrayList<String>();
-            ArrayList<String> sizeList = new ArrayList<String>();
-                              
-            if(includeColumnData && !headingsAdded) { 
-               
-               for (int i = 0; i < numCols; i++) {
-                  String name = rsmeta.getColumnName(i+1);
-                  nameList.add(name);
-               }
-               rowCollection.add(nameList);
-               
-               for (int i = 0; i < numCols; i++) {
-                  int size = rsmeta.getPrecision(i+1);
-                  sizeList.add(Integer.toString(size));
-               }
-               rowCollection.add(sizeList);
-               headingsAdded = true;
-            }
-            
-            for (int i = 0; i < numCols; i++) {
-               String data = rs.getString(i+1);
-               
-               rowList.add(data);
-            }
-            rowCollection.add(rowList);
-         }
-      } catch(SQLException e) { 
-         System.out.println("Error: failure to accomplish task.");
-         ArrayList<String> logMessages = new ArrayList<String>();
-         logMessages.add("Exception in the getData method");
-         logMessages.add("User: " + user);
-         logMessages.add("SQL statement: " + sqlStmnt);
-         logMessages.add("includeColumnData: " + includeColumnData);
-         
-         throw new DLException(e, logMessages);
-         
-      } catch(Exception ex) {
-         ex.printStackTrace();
-      }
-      
-      return rowCollection;
-   }
-   
-   public ArrayList<ArrayList<String>> getData(String sqlQuery, ArrayList<String> vals) throws DLException{
+  /**
+   * Method that executes a preparedStatement and returns an the number of rows
+   * affected
+   * 
+   * @param query
+   * @param values
+   */
+  public int executeStmt(String query, String... values) {
+    try {
+      PreparedStatement pstmt = prepare(query, values);
+      int rc = pstmt.executeUpdate();
+      System.out.println("rc: " + rc);
+      pstmt.close();
+      return rc;
+    }
 
-      connect();
-      ArrayList<ArrayList<String>> rowCollection = new ArrayList<ArrayList<String>>();
-      try {
-         PreparedStatement prepStmt = prepare(sqlQuery, vals);
-         ResultSet rs = prepStmt.executeQuery();
-         ResultSetMetaData rsmeta = rs.getMetaData();
-         
-         int numCols = rsmeta.getColumnCount();
-         // boolean headingsAdded = false;
-         
-         while ( rs.next() ) {
-            ArrayList<String> rowList = new ArrayList<String>();
-            // ArrayList<String> nameList = new ArrayList<String>();
-            // ArrayList<String> sizeList = new ArrayList<String>();
-                              
-                        
-            for (int i = 0; i < numCols; i++) {
-               String data = rs.getString(i+1);
-               rowList.add(data);
-            }
-            
-            rowCollection.add(rowList);
-         }
-      } catch(SQLException e) { 
-         System.out.println("Error: failure to accomplish task.");
-         ArrayList<String> logMessages = new ArrayList<String>();
-         logMessages.add("Exception in the getData method");
-         logMessages.add("User: " + user);
-         logMessages.add("SQL statement: " + sqlQuery);
-         
-         throw new DLException(e, logMessages);
-         
-      } catch(Exception ex) {}
+    catch (SQLException sqle) {
+      System.out.println("Issue while executing the query. Check your connection and query");
+      new DLException(sqle, "SQLException", "Issue while executing the query. Check your connection and query", uri,
+          driver, query);
+      return -1;
+    }
 
-      close();
-      
-      return rowCollection;
-   }
-   
-   public int setData(String sqlStmnt) throws DLException{
-      
-      int numAffected = -1;
-      try {
-         Statement stmnt = conn.createStatement();
-         
-         numAffected = stmnt.executeUpdate(sqlStmnt);
-      } catch(SQLException e) { 
-         numAffected = -1;
-         System.out.println("Error: failure to accomplish task.");
-         
-         ArrayList<String> logMessages = new ArrayList<String>();
-         logMessages.add("Exception in the setData method");
-         logMessages.add("User: " + user);
-         logMessages.add("SQL statement: " + sqlStmnt);
-         
-         throw new DLException(e, logMessages);
-         
-      } catch(Exception ex) {}
-      
-      return numAffected;
-   }
-   
-   public int setData(String sqlStmnt, ArrayList<String> vals) throws DLException {
-      
-      int numAffected = -1;
-      try {
-         numAffected = executeStmt(sqlStmnt, vals);
-      } catch(Exception e) { 
-         numAffected = -1;
-         System.out.println("Error: failure to accomplish task.");
-         
-         ArrayList<String> logMessages = new ArrayList<String>();
-         logMessages.add("Exception in the setData method");
-         logMessages.add("User: " + user);
-         logMessages.add("SQL statement: " + sqlStmnt);
-         
-         throw new DLException(e, logMessages);
-      }   
-      
-      return numAffected;
-   
-   }
-   
-   public int executeStmt(String sqlStmnt, ArrayList<String> vals) throws DLException{
+    catch (Exception e) {
+      System.out.println("Issue while executing the query. Check your connection and query");
+      new DLException(e, "Exception", "Issue while executing the query. Check your connection and query", uri, driver,
+          query);
+      return -1;
+    }
+  } // end of executeStmt
+
+  public int executeStmt(String sqlStmnt, ArrayList<String> vals) throws DLException{
    
       
       int numAffected = -1;
@@ -237,7 +392,7 @@ public class MySQLDatabase {
          
          ArrayList<String> logMessages = new ArrayList<String>();
          logMessages.add("Exception in the executeStmt method");
-         logMessages.add("User: " + user);
+         logMessages.add("User: " + id);
          logMessages.add("SQL statement: " + sqlStmnt);
          
          throw new DLException(e, logMessages);
@@ -245,47 +400,63 @@ public class MySQLDatabase {
       } catch(Exception ex) {}
       
       return numAffected;
-   }
+  }
 
-   // --------------------------------------ONLY INCLUDE THESE IF WE DECIDE TO DO TRANSACTIONS -- AND FIX UP THE TRY/CATCH
-//    public void startTrans() {
-//       try {
-//          connect();
-//          conn.setAutoCommit(false);
-//       } 
-//       catch(DLException dle) {
-//          System.out.println("OOPS-- SHE DON'T WORK");
-//       } 
-//       catch(SQLException sqle) {
-//          System.out.println("OOPS-- SHE DON'T WORK");
-//       }
-//    }
-//    public void endTrans() {
-//       try {
-//          conn.commit();
-//          conn.setAutoCommit(true);
-//          close();
-//       } 
-//       catch(DLException dle) {
-//          System.out.println("OOPS-- SHE DON'T WORK");
-//       } 
-//       catch(SQLException sqle) {
-//          sqle.printStackTrace();
-//          System.out.println("OOPS-- SHE DON'T WORK");
-//       }
-//    }
-//    public void rollbackTrans() {
-//       try {
-//          conn.rollback();
-//          conn.setAutoCommit(true);
-//          close();
-//       }
-//       catch(DLException dle) {
-//          System.out.println("OOPS-- SHE DON'T WORK");
-//       } 
-//       catch(SQLException sqle) {
-//          System.out.println("OOPS-- SHE DON'T WORK");
-//       }
-//    }
+  /**
+   * Method that starts the transaction
+   */
+  public void startTrans() {
+   try {
+      conn.setAutoCommit(false);
+   }
    
-}
+   catch (SQLException sqle) {
+    System.out.println("Issue while starting the transaction. Check your connection.");
+      new DLException(sqle, "SQLException", "Issue while starting the transaction. Check your connection. ", uri, driver);
+   }
+    
+  }
+
+  /**
+   * Method that ends the transaction
+   */
+  public void endTrans() {
+    try {
+      conn.setAutoCommit(true);
+   }
+   
+   catch (SQLException sqle) {
+    System.out.println("Issue while ending the transaction. Check your connection.");
+      new DLException(sqle, "SQLException", "Issue while ending the transaction. Check your connection. ", uri, driver);
+   }
+  }
+
+  /**
+   * Method that executes a rollback
+   */
+  public void rollbackTrans() {
+    try {
+      conn.rollback();
+   }
+   
+   catch (SQLException sqle) {
+    System.out.println("Issue while executes the rollback. Check your connection.");
+      new DLException(sqle, "SQLException", "Issue while executes the rollback. Check your connection. ", uri, driver);
+   }
+  }
+
+  /**
+   * Method that executes a commit
+   */
+  public void commitTrans() {
+    try {
+      conn.commit();
+   }
+   
+   catch (SQLException sqle) {
+    System.out.println("Issue while executes the rollback. Check your connection.");
+      new DLException(sqle, "SQLException", "Issue while executes the rollback. Check your connection. ", uri, driver);
+   }
+  }
+
+} // end of class
