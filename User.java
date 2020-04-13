@@ -114,7 +114,7 @@ public class User
 
       catch (Exception e) {
          System.out.println("There is no paper written by the user with id: " +  getUserId() + ". Check your connection and userId. ");
-         new DLException(e, "There is no paper written by the user with id: " +  getUserId() + ". Check your connection and userId. ", mysql.toString() + " ------ " + getUserId());
+         new DLException(e);        
          return null;
        }
    }
@@ -138,7 +138,7 @@ public class User
 
       catch (Exception e) {
          System.out.println("Info retrive failed. Check your connection and email. ");
-         new DLException(e, "Info retrive failed. Check your connection and email. ", mysql.toString() + " ------ " + getEmail());
+         new DLException(e);
          return null;
        }
    }
@@ -166,8 +166,8 @@ public class User
 
       catch (Exception e) {
          System.out.println("UPDATE or INSERT was unsuccessful. Check your connection, query and userId. ");
-         new DLException(e, "UPDATE or INSERT was unsuccessful. Check your connection, query and userId. ", mysql.toString() + ", " + getUserId());
-       }
+         new DLException(e);       
+      }
       
    }
 
@@ -207,7 +207,7 @@ public class User
 
       catch (Exception e) {
          System.out.println("Reset Password failed. Check your connection. ");
-         new DLException(e, "Reset Password failed. Check your connection. ", mysql.toString());
+         new DLException(e);
        }
 
    }
@@ -229,7 +229,7 @@ public class User
    
        catch (Exception e) {
          System.out.println("Changing password failed. Check your connection and email.");
-         new DLException(e, "Changing password failed. Check your connection and email. ", mysql.toString());
+         new DLException(e);
        }
    }
 
@@ -269,7 +269,7 @@ public class User
 
    catch (Exception e) {
      System.out.println("Login failed. Check your connection and credential");
-     new DLException(e, "Login failed. ", mysql.toString() + " ------ " + getEmail() + " " + getPswd());
+     new DLException(e);
      return false;
    }
 } // end of login
