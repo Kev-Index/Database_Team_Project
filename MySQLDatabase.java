@@ -44,13 +44,10 @@ public class MySQLDatabase {
 
     catch (ClassNotFoundException cnfe) {
       System.out.println("Driver not found.");
-      new DLException(cnfe, "ClassNotFoundException", "Driver not found. Check your driver", uri, driver);
     }
-
     catch (Exception e) {
       System.out.println("Error while connecting to the server.");
-      new DLException(e, "Exception", "Issue while connecting to the server. Check your URI and credentials", uri,
-          driver);
+      new DLException(e);
     }
 
   } // end of constructor
@@ -85,8 +82,6 @@ public class MySQLDatabase {
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println("| Error connecting to the MySQLDatabase |");
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      new DLException(sqle, "SQLException", "Issue while connection to the sql server. Check your URI and credentials",
-          uri, driver);
       return false;
     }
 
@@ -94,8 +89,7 @@ public class MySQLDatabase {
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println("| Error connecting to MySQLDatabase |");
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      new DLException(e, "Exception", "Issue while connection to the sql server. Check your URI and credentials", uri,
-          driver);
+      new DLException(e);
       return false;
     }
 
@@ -125,8 +119,6 @@ public class MySQLDatabase {
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println("| Error disconnecting from MySQLDatabase |");
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      new DLException(sqle, "SQLException", "Issue while closing to the sql server. Check your connection", uri,
-          driver);
       return false;
     }
 
@@ -134,7 +126,7 @@ public class MySQLDatabase {
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println("| Error disconnecting from MySQLDatabase |");
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      new DLException(e, "Exception", "Issue while closing to the sql server. Check your connection", uri, driver);
+      new DLException(e);
       return false;
     }
 
@@ -182,16 +174,13 @@ public class MySQLDatabase {
 
     catch (SQLException sqle) {
       System.out.println("Issue while executing the query. Check your connection and query");
-      new DLException(sqle, "SQLException", "Issue while executing the query. Check your connection and query", uri,
-          driver, query);
       sqle.printStackTrace();
       return null;
     }
 
     catch (Exception e) {
       System.out.println("Issue while executing the query. Check your connection and query");
-      new DLException(e, "Exception", "Issue while executing the query. Check your connection and query", uri, driver,
-          query);
+      new DLException(e);
       e.printStackTrace();
       return null;
 
@@ -319,8 +308,6 @@ public class MySQLDatabase {
 
     catch (SQLException sqle) {
       System.out.println("Issue while creating the statement. Check your connection and values");
-      new DLException(sqle, "SQLException", "Issue while executing the query. Check your connection and query", uri,
-          driver, query);
       return null;
     }
 
@@ -365,15 +352,12 @@ public class MySQLDatabase {
 
     catch (SQLException sqle) {
       System.out.println("Issue while executing the query. Check your connection and query");
-      new DLException(sqle, "SQLException", "Issue while executing the query. Check your connection and query", uri,
-          driver, query);
       return -1;
     }
 
     catch (Exception e) {
       System.out.println("Issue while executing the query. Check your connection and query");
-      new DLException(e, "Exception", "Issue while executing the query. Check your connection and query", uri, driver,
-          query);
+      new DLException(e);
       return -1;
     }
   } // end of executeStmt
@@ -412,7 +396,6 @@ public class MySQLDatabase {
    
    catch (SQLException sqle) {
     System.out.println("Issue while starting the transaction. Check your connection.");
-      new DLException(sqle, "SQLException", "Issue while starting the transaction. Check your connection. ", uri, driver);
    }
     
   }
@@ -427,7 +410,6 @@ public class MySQLDatabase {
    
    catch (SQLException sqle) {
     System.out.println("Issue while ending the transaction. Check your connection.");
-      new DLException(sqle, "SQLException", "Issue while ending the transaction. Check your connection. ", uri, driver);
    }
   }
 
@@ -441,7 +423,6 @@ public class MySQLDatabase {
    
    catch (SQLException sqle) {
     System.out.println("Issue while executes the rollback. Check your connection.");
-      new DLException(sqle, "SQLException", "Issue while executes the rollback. Check your connection. ", uri, driver);
    }
   }
 
@@ -455,7 +436,6 @@ public class MySQLDatabase {
    
    catch (SQLException sqle) {
     System.out.println("Issue while executes the rollback. Check your connection.");
-      new DLException(sqle, "SQLException", "Issue while executes the rollback. Check your connection. ", uri, driver);
    }
   }
 
