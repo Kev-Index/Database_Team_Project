@@ -1,37 +1,47 @@
-/*
+/**
  * @course ISTE.330.01
  * @version Project.01
- * @author Christoforo, Jake
+ * @author Pallotta, Andrea
+ *         Christoforo, Jake
            Liu, Kevin 
-           Pallotta, Andrea
+           
            Sause, Daniel
            Wesel, Blake
  */
  
-public class Paper
-{
-   //Paper object info
-   private int paperId;
-   private String filename;
-   private String[] subjects;
+public class Paper {
+
+   // Paper object info
+   private int paperId; //paperId
+   private String filename; //title
+   private String fileId; //fileId
+   private String[] subjects; //array of subjectName
+   private String[] track; //track
+   private String status; //status
+   private String tStatus; //tentativeStatus
    
-   //co-authors info
+   // Co-authors info
    private String[] firstnames;
    private String[] lastnames;
    
-   //submission info
+   // Submission info
    private String submissionTitle;
-   private String submissionAbstract;
-   private int submissionType;
+   private String submissionAbstract; //abstract
+   private int submissionType; //submissionType
+   private String submitterId; //submitterId
+           
+   // Paper Data to be Changed
+   private ArrayList<String> data = new ArrayList<String>();
 
-   /*
-      @param none
-      default constructor for Paper object
-      initializes blank or unharmful values
-      @return none
-   */
-   public Paper()
-   {
+           
+           
+   /**
+    *  @param none
+    *  default constructor for Paper object
+    *  initializes blank or unharmful values 
+    *  @return none
+    */
+   public Paper() {
       paperId = 0;
       filename = "";
       submissionTitle = "";
@@ -39,144 +49,124 @@ public class Paper
       submissionType = 0;
    }
    
-   /*
-      @param (int)
-      returns all info for a specific paper EXCEPT filename
-      @return String
-   */
-   public String getPaper(int _paperId)
-   {
-      //create temp String to store full names
-      String tempNames = "";
-      //iterate through length of array for names
-      for (int i = 0; i < firstnames.length; i++)
+           
+           
+   /**
+    *  @param (int) - paperId
+    *  returns all info for a specific paper EXCEPT filename
+    *  @return String
+    */
+   public String getPaper(int paperId) {
+      try
       {
-         //concatenate first name and last name together
-         if (i == 0)
-         {
-            tempNames += (firstnames[i] + " " + lastnames[i]);
-         }
-         else
-         {
-            tempNames += (", " + firstnames[i] + " " + lastnames[i]);
-         }
+      
+         String query = "SELECT * FROM papers WHERE paperId = ?";
+         data.add(getId());
+         
+         //getData() method will print out values
+         mysqldb.getData(query,data);
+         data.clear();
+         
+      }  
+      catch (Exception _e)
+      {
+         new DLException(_e,"Operation Failed When Retrieving Paper");
+         
+      }
+   }
+  
+           
+           
+   /**
+    *  @param (int,String,String,int,String,String[],String[],String[]) - paperId, submissionTitle, submissionAbstract, submissionType, filename, subjects, firstnames, lastnames
+    *  default constructor for Paper object
+    *  @return none
+    */
+   public void setPaper(int paperId, String submissionTitle, String submissionAbstract, int submissionType, 
+                        String filename, String[] subjects, String[] firstnames, String[] lastnames) {
+      if(this.paperId == null || this.paperId == 0) {
+         // create new "entry" - what ever that means...
+
+      } else {
+         this.paperId            = paper;
+         this.submissionTitle    = submissionTitle;
+         this.submissionAbstract = submissionAbstract;
+         this.submissionType     = submissionType;
+         this.filename           = filename;
+         this.subjects           = subjects;
+         this.firstnames         = firstnames;
+         this.lastnames          = lastnames;
       }
       
-      //create temp String to store subjects
-      String tempSubs = "";
-      for (int i = 0; i < subjects.length; i++)
-      {
-         //contatenate subjects into one String for display
-         if (i == 0)
-         {
-            tempSubs += subjects[i];
-         }
-         else
-         {
-            tempNames += (", " + subjects[i]);
-         }
-      }
-   
-      return ("Paper ID:" + paperId +
-               "\nSubmission Title:" + submissionTitle +
-               "\nSubmission Abstract:" + submissionAbstract +
-               "\nSubmission Type:" + submissionType +
-               "\nSubjects: " + tempSubs +
-               "\nCo-Authors:" + tempNames);
-
-
-
    }
    
-   /*
-      @param (int,String,String,int,String,String[],String[],String[])
-      default constructor for Paper object
-      @return none
-   */
-   public void setPaper(int _paperId, String _submissionTitle, String _submissionAbstract, int _submissionType, String _filename, String[] _subjects, String[] _firstNames, String[] _lastnames)
-   {
-   
-   }
-   
-   //accessors
-   public int getId()
-   {
+           
+           
+   // Accessors
+   public int getId() {
       return paperId;
    }
    
-   public String getSubTitle()
-   {
+   public String getSubTitle() {
       return submissionTitle;
    }
    
-   public String getSubAbstract()
-   {
+   public String getSubAbstract() {
       return submissionAbstract;
    }
    
-   public int getSubType()
-   {
+   public int getSubType() {
       return submissionType;
    }
    
-   public String getFileName()
-   {
+   public String getFileName() {
       return filename;
    }
    
-   public String[] getSubjects()
-   {
+   public String[] getSubjects() {
       return subjects;
    }
    
-   public String[] getFirstNames()
-   {
+   public String[] getFirstNames() {
       return firstnames;
    }
    
-   public String[] getLastNames()
-   {
+   public String[] getLastNames() {
       return lastnames;
    }
    
-   //mutators
-   public void setId(int _paperId)
-   {
-      paperId = _paperId;
+           
+           
+   // Mutators
+   public void setId(int paperId) {
+      this.paperId = paperId;
    }
    
-   public void setSubTitle(String _submissionTitle)
-   {
-      submissionTitle = _submissionTitle;
+   public void setSubTitle(String submissionTitle) {
+      this.submissionTitle = submissionTitle;
    }
    
-   public void setSubAbstract(String _submissionAbstract)
-   {
-      submissionAbstract = _submissionAbstract;
+   public void setSubAbstract(String submissionAbstract) {
+      this.submissionAbstract = submissionAbstract;
    }
    
-   public void setSubType(int _submissionType)
-   {
-      submissionType = _submissionType;
+   public void setSubType(int submissionType) {
+      this.submissionType = submissionType;
    }
    
-   public void setFileName(String _filename)
-   {
-      filename = _filename;
+   public void setFileName(String filename) {
+      this.filename = filename;
    }
    
-   public void setSubjects(String[] _subjects)
-   {
-      subjects = _subjects;
+   public void setSubjects(String[] subjects) {
+      this.subjects = subjects;
    }
    
-   public void setFirstNames(String[] _firstnames)
-   {
-      firstnames = _firstnames;
+   public void setFirstNames(String[] firstnames) {
+      this.firstnames = firstnames;
    }
    
-   public void setLastNames(String[] _lastnames)
-   {
-      lastnames = _lastnames;
+   public void setLastNames(String[] lastnames) {
+      this.lastnames = lastnames;
    }
 }
