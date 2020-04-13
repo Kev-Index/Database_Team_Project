@@ -12,17 +12,17 @@ This is a program consisting of a Data Layer and an optional Presentation Layer 
 
 ### Requirements
 - [] 1. Functionality
-   - [] A. CRUD Methods
+   - [x] A. CRUD Methods
    - [] B. Paper
-      - [] a. getPaper()
+      - [x] a. getPaper()
       - [] a. setPaper()
-   - [] C. User
-      - [] a. getPapers()
-      - [] a. getUser()
-      - [] a. setUser()
-      - [] a. resetPassword()
-      - [] a. setPassword()
-      - [] a. login()
+   - [x] C. User
+      - [x] a. getPapers()
+      - [x] a. getUser()
+      - [x] a. setUser()
+      - [x] a. resetPassword()
+      - [x] a. setPassword()
+      - [x] a. login()
 - [] 2. Design
 - [x] 3. Readability
 - [] 4. Documentation
