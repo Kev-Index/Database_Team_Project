@@ -9,6 +9,8 @@
            Wesel, Blake
  */
  
+import java.util.*;
+ 
 public class Paper {
 
    // Paper object info
@@ -56,12 +58,12 @@ public class Paper {
     *  returns all info for a specific paper EXCEPT filename
     *  @return String
     */
-   public String getPaper(int paperId) {
+   public void getPaper(int paperId, MySQLDatabase mysqldb) {
       try
       {
       
          String query = "SELECT * FROM papers WHERE paperId = ?";
-         data.add(getId());
+         data.add(Integer.toString(getId()));
          
          //getData() method will print out values
          mysqldb.getData(query,data);
@@ -70,7 +72,7 @@ public class Paper {
       }  
       catch (Exception _e)
       {
-         new DLException(_e,"Operation Failed When Retrieving Paper");
+         new DLException(_e);
          
       }
    }
@@ -84,7 +86,8 @@ public class Paper {
     */
    public void setPaper(int paperId, String submissionTitle, String submissionAbstract, int submissionType, 
                         String filename, String[] subjects, String[] firstnames, String[] lastnames) {
-      if(this.paperId == null || this.paperId == 0) {
+      /*
+      if((this.paperId == null) || (this.paperId == 0)) {
          // create new "entry" - what ever that means...
 
       } else {
@@ -97,7 +100,7 @@ public class Paper {
          this.firstnames         = firstnames;
          this.lastnames          = lastnames;
       }
-      
+      */
    }
    
            
