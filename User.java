@@ -1,3 +1,9 @@
+import java.util.ArrayList;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
 /*
  * @course ISTE.330.01
  * @version Project.01
@@ -11,138 +17,336 @@
 public class User
 {
    //User object info
+   private int userId;
    private String lastName;
    private String firstName;
    private String email;
    private String pswd;
-   private String affiliation;
+   private String canReview;
+   private String expiration;
+   private int isAdmin;
+   private int affiliationId;
+
+   private MySQLDatabase mysql = new MySQLDatabase();
+   Format formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+   private static final String LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+   private static final String NUMBERS = "0123456789";
+   private static final String POSSIBLE_COMBINATIONS = LOWERCASE + NUMBERS;
+
    
-   /*
-      @param none
-      default constructor for User object
-      initializes blank or unharmful values
-      @return none
-   */
-   public User()
-   {
-      lastName = "";
-      firstName = "";
-      email = "";
-      pswd = "";
-      affiliation = "";
+   /**
+    * default constructor
+    */
+   public User() {
+      this.userId = 0;
+      this.lastName = "";
+      this.firstName = "";
+      this.email = "";
+      this.pswd = "";
+      this.canReview = "";
+      this.expiration = "";
+      this.isAdmin = 0;
+      this.affiliationId = 0;
+   }
+
+   /**
+    * parameterized constructor
+    * @param email
+    */
+    public User(String email) {
+      this.userId = 0;
+      this.lastName = "";
+      this.firstName = "";
+      this.email = email;
+      this.pswd = "";
+      this.canReview = "";
+      this.expiration = "";
+      this.isAdmin = 0;
+      this.affiliationId = 0;
+   }
+
+   /**
+    * parameterized constructor
+    * @param email
+    * @param pswd
+    */
+   public User(String email, String pswd) {
+      this.userId = 0;
+      this.lastName = "";
+      this.firstName = "";
+      this.email = email;
+      this.pswd = pswd;
+      this.canReview = "";
+      this.expiration = "";
+      this.isAdmin = 0;
+      this.affiliationId = 0;
+   }
+
+   /**
+    * parameterized constructor
+    * @param userId
+    * @param email
+    * @param pswd
+    */
+    public User(int userId, String email, String pswd) {
+      this.userId = userId;
+      this.lastName = "";
+      this.firstName = "";
+      this.email = email;
+      this.pswd = pswd;
+      this.canReview = "";
+      this.expiration = "";
+      this.isAdmin = 0;
+      this.affiliationId = 0;
    }
    
-   /*
-      @param (int)
-      returns all papers for specified user
-      @return Paper[]
-   */
-   public Paper[] getPapers(int _userId)
-   {
-      return null;
+   /**
+    * method to retrive papers for specified user
+    * @param userId
+    * @return
+    */
+   public ArrayList<String> getPapers(int userId) {
+      String query = "SELECT papers.title from papers LEFT JOIN paperauthors ON papers.paperId = paperauthors.paperId LEFT JOIN users ON paperauthors.userId = ? GROUP BY papers.title";
+      try {
+         ArrayList<ArrayList<String>> results = mysql.getData(query, userId + "");
+         return results.get(2);
+      }
+
+      catch (Exception e) {
+         System.out.println("There is no paper written by the user with id: " +  getUserId() + ". Check your connection and userId. ");
+         new DLException(e, "There is no paper written by the user with id: " +  getUserId() + ". Check your connection and userId. ", mysql.toString() + " ------ " + getUserId());
+         return null;
+       }
    }
    
-   /*
-      @param none
-      returns attributes of User EXCEPT password
-      @return String
-   */
-   public String getUser()
-   {
-      return "";
+   /**
+    * method that returns information for instantiated user
+    * @return ArrayList<String>
+    */
+   public ArrayList<String> getUser() {
+      try {
+         ArrayList<ArrayList<String>> results = mysql.getData("SELECT userId, lastName, firstName, canReview, expiration, isAdmin, affiliationId FROM users WHERE email = ?", getEmail());
+         setUserId(Integer.parseInt(results.get(2).get(0)));
+         setLastName(results.get(2).get(1));
+         setFirstName(results.get(2).get(2));
+         setCanReview(results.get(2).get(5));
+         setExpiration(results.get(2).get(6));
+         setIsAdmin(Integer.parseInt(results.get(2).get(7)));
+         setAffil(Integer.parseInt(results.get(2).get(8)));
+         return results.get(2);
+      }
+
+      catch (Exception e) {
+         System.out.println("Info retrive failed. Check your connection and email. ");
+         new DLException(e, "Info retrive failed. Check your connection and email. ", mysql.toString() + " ------ " + getEmail());
+         return null;
+       }
    }
    
-   /*
-      @param (String,String,String,String,String)
-      updates User attributes to db
-      creates new entry if no matching userId
-      @return none
-   */
-   public void setUser(String _lastName, String _firstName, String _email, String _pswd, String _affiliation)
-   {
+   /**
+    * method that updates info or creates new entry in the database
+    * @param lastName
+    * @param firstName
+    * @param email
+    * @param pswd
+    * @param affiliation
+    */
+   public void setUser(String lastName, String firstName, String email, String pswd, int affiliation) {
+      try {
+         if (getUserId() == 0) {
+            int results = mysql.setData("INSERT INTO users (lastname, firstname, email, pswd, affiliationId) VALUES (?, ?, ?, ?, ?)", lastName, firstName, email, pswd, affiliation + "");
+            System.out.println("Query OK, " + results + " rows affected");
+         }
+   
+         else {
+            int results = mysql.setData("UPDATE users SET lastname = ?, firstname = ?, email = ?, pswd = ?, affiliationId = ? WHERE userId = ?", lastName, firstName, email, pswd, affiliation + "", getUserId() + "");
+            System.out.println("Query OK, " + results + " rows affected");
+         }
+      }
+
+      catch (Exception e) {
+         System.out.println("UPDATE or INSERT was unsuccessful. Check your connection, query and userId. ");
+         new DLException(e, "UPDATE or INSERT was unsuccessful. Check your connection, query and userId. ", mysql.toString() + ", " + getUserId());
+       }
       
    }
-   
-   /*
-      @param (String)
-      creates new password and emails to specified address
-      ONLY GOOD FOR 5 MINUTES      
-      @return none
-   */
-   public void resetPassword(String _email)
-   {
-   
+
+   /**
+    * method to generate a random password of 45 chars (lowercase letters and numbers only)
+    * @return newPassword
+    */
+   public String pswdGenerator() {
+      
+      Random random = new Random();
+      char[] newPassword = new char[45];
+
+      for (int i = 0; i < 45; i++) {
+         newPassword[i] = POSSIBLE_COMBINATIONS.charAt(random.nextInt(POSSIBLE_COMBINATIONS.length()));
+      }
+      return new String(newPassword);
    }
    
-   /*
-      @param (String)
-      changes password of currently logged in user to param
-      @return none
-   */
-   public void setPassword(String _password)
-   {
-   
+
+   /**
+    * method to reset password. New password is valid for only 5 minutes.
+    */
+   public void resetPassword() {
+      
+      try {
+         String query = "UPDATE users SET pswd = ?, expiration = ? WHERE email = ?";
+         Date currentDate = new Date((System.currentTimeMillis()+5*60*1000));
+         String newExpTime = formatter.format(currentDate);
+         String newPassword = pswdGenerator();
+         int results = mysql.setData(query, newPassword, newExpTime, getEmail());
+         System.out.println("Query OK, " + results + " rows affected");
+         
+         // @TEST ONLY
+         System.out.println("The new password is " + newPassword);
+
+      }
+
+      catch (Exception e) {
+         System.out.println("Reset Password failed. Check your connection. ");
+         new DLException(e, "Reset Password failed. Check your connection. ", mysql.toString());
+       }
+
    }
    
-   /*
-      @param (String,String)
-      IF good credentials, returns token
-      @return token?
-   */
-   public void login(String _email, String _password)
-   {
+   /**
+    * method to change the password of a logged in user
+    * @param newPassword
+    */
+   public void setPassword(String newPassword) {
+      
+      try {
+         if (login()) {
+            String query = "UPDATE users SET pswd = ?, expiration = ? WHERE email = ?";
+            int results = mysql.setData(query, newPassword, "20250101000000", getEmail());
+            System.out.println("Query OK, " + results + " rows affected");
+         }
    
+       }
+   
+       catch (Exception e) {
+         System.out.println("Changing password failed. Check your connection and email.");
+         new DLException(e, "Changing password failed. Check your connection and email. ", mysql.toString());
+       }
    }
+
+    /**
+   * Retrives password and returns result of the login. If the username and password match, 
+   * return true. Otherwise, return false.
+   * @return boolean
+   */
+  public boolean login() {
+   try {
+    ArrayList<ArrayList<String>> results = mysql.getData("SELECT * FROM users WHERE email = ? AND pswd = ?", getEmail(), getPswd()); 
+    if (!results.isEmpty()) {
+         String expiration = results.get(2).get(6).substring(0,4) + "/" + results.get(2).get(6).substring(4,6) + "/" + results.get(2).get(6).substring(6,8) + " " + 
+                             results.get(2).get(6).substring(8,10) + ":" + results.get(2).get(6).substring(10,12) + ":" + results.get(2).get(6).substring(12,14); 
+         Date currentDate = new Date();
+         Date expirationDate = new  SimpleDateFormat("yyyy/MM/dd HH:mm").parse(expiration);
+
+         if (expirationDate.compareTo(currentDate) < 0) {
+            setUserId(Integer.parseInt(results.get(2).get(0)));
+            setLastName(results.get(2).get(1));
+            setFirstName(results.get(2).get(2));
+            setCanReview(results.get(2).get(5));
+            setExpiration(results.get(2).get(6));
+            setIsAdmin(Integer.parseInt(results.get(2).get(7)));
+            setAffil(Integer.parseInt(results.get(2).get(8)));
+            return true;
+         }
+
+         else {
+            System.out.println("the credentials are expired");
+            return false;
+         }
+    } 
+
+    return false;
+   }
+
+   catch (Exception e) {
+     System.out.println("Login failed. Check your connection and credential");
+     new DLException(e, "Login failed. ", mysql.toString() + " ------ " + getEmail() + " " + getPswd());
+     return false;
+   }
+} // end of login
+
+
    
    //accessors
-   public String getLastName()
-   {
-      return lastName;
+   public int getUserId() {
+      return this.userId;
+   }
+
+   public String getLastName() {
+      return this.lastName;
    }
    
-   public String getFirstName()
-   {
-      return firstName;
+   public String getFirstName() {
+      return this.firstName;
    }
    
-   public String getEmail()
-   {
-      return email;
+   public String getEmail() {
+      return this.email;
    }
    
-   public String getPswd()
-   {
-      return pswd;
+   public String getPswd() {
+      return this.pswd;
+   }
+
+   public String getCanReview() {
+      return this.canReview;
+   }
+
+   public String getExpiration() {
+      return this.expiration;
+   }
+
+   public int getIsAdmin() {
+      return this.isAdmin;
    }
    
-   public String getAffil()
-   {
-      return affiliation;
+   public int getAffil() {
+      return this.affiliationId;
    }
    
    //mutators
-   public void setLastName(String _lastName)
-   {
-      lastName = _lastName;
+   public void setUserId(int userId) {
+      this.userId = userId;
+   }
+
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
    }
    
-   public void setFirstName(String _firstName)
-   {
-      lastName = _firstName;
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
    }
    
-   public void setEmail(String _email)
-   {
-      email = _email;
+   public void setEmail(String email) {
+      this.email = email;
    }
    
-   public void setPswd(String _pswd)
-   {
-      pswd = _pswd;
+   public void setPswd(String pswd) {
+      this.pswd = pswd;
+   }
+
+   public void setCanReview(String canReview) {
+      this.canReview = canReview;
+   }
+
+   public void setExpiration(String expiration) {
+      this.expiration = expiration;
+   }
+
+   public void setIsAdmin(int isAdmin) {
+      this.isAdmin = isAdmin;
    }
    
-   public void setAffil(String _affiliation)
-   {
-      affiliation = _affiliation;
+   public void setAffil(int affiliationId) {
+      this.affiliationId = affiliationId;
    }
 }
