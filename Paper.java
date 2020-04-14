@@ -13,6 +13,9 @@ import java.util.*;
  
 public class Paper {
 
+   private MySQLDatabase mysql = new MySQLDatabase();
+
+
    // Paper object info
    private int paperId; //paperId
    private String filename; //title
@@ -84,23 +87,69 @@ public class Paper {
     *  default constructor for Paper object
     *  @return none
     */
-   public void setPaper(int paperId, String submissionTitle, String submissionAbstract, int submissionType, 
-                        String filename, String[] subjects, String[] firstnames, String[] lastnames) {
-      /*
-      if((this.paperId == null) || (this.paperId == 0)) {
-         // create new "entry" - what ever that means...
+   public void setPaper(int paperId, String submissionTitle, String submissionAbstract, int submissionType,
+        String filename, String[] subjects, String[] firstnames, String[] lastnames) {
+        int results = 0;
 
-      } else {
-         this.paperId            = paper;
-         this.submissionTitle    = submissionTitle;
-         this.submissionAbstract = submissionAbstract;
-         this.submissionType     = submissionType;
-         this.filename           = filename;
-         this.subjects           = subjects;
-         this.firstnames         = firstnames;
-         this.lastnames          = lastnames;
-      }
-      */
+        try {
+            if (this.paperId == 0) {
+
+                mysql.startTrans();
+                for (int i = 0; i < firstnames.length; i++) {
+                    results = mysql.setData(
+                            "INSERT INTO paperauthors (paperId, userId) VALUES (?, (SELECT userId from users where firstname='?' AND lastname='?' LIMIT 1))",
+                            paperId+"", firstnames[i], lastnames[i]);
+                    System.out.println("Query OK, " + results + " rows affected");
+                    if ( results == 0) {
+                        System.out.println("This user: " + lastnames[i] +
+                                 "," + firstnames[i] + " Does not exist. Please have this user create an account.");
+                        mysql.rollbackTrans();
+                    }
+                }
+
+                results = mysql.setData("INSERT INTO papers (paperId, title, abstract, fileId) values (?,?,?,?)",
+                        paperId+"", submissionTitle, submissionAbstract, filename);
+
+            } else {
+            
+                results = mysql.setData("DELETE FROM paperauthors where paperId=?", paperId+"");
+                System.out.println("Query OK, " + results + " rows affected");
+
+                results = mysql.setData("DELETE FROM paperSubjects where paperId=?", paperId+"");
+                
+                for (int i=0; i< firstnames.length; i++) {
+                    results = mysql.setData(
+                            "INSERT INTO paperauthors (paperId, userId) VALUES (?, (SELECT userId from users where firstname='?' AND lastname='?' LIMIT 1))",
+                            paperId+"", firstnames[i], lastnames[i]);
+                    System.out.println("Query OK, " + results + " rows affected");
+                    if ( results == 0) {
+                        System.out.println("This user: " + lastnames[i]
+                                + "," + firstnames[i] + " Does not exist. Please have this user create an account.");
+                        mysql.rollbackTrans();
+                    }
+                    
+                }
+                for(int i =0; i<subjects.length; i++) {
+                    results = mysql.setData("INSERT INTO papersubjects (paperId, subjectId) VALUES (?,(SELECT subjectId FROM _subjects WHERE subjectName=?))",paperId+"",subjects[i]);
+                    System.out.println("Query OK, " + results + " rows affected");
+ 
+                    
+                }
+                
+                results = mysql.setData("UPDATE papers SET title=?, abstract=?, fileId=? WHERE paperId=?",submissionTitle, submissionAbstract,filename,paperId+"");
+                System.out.println("Query OK, " + results + " rows affected");
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("UPDATE or INSERT was unsuccessful. Check your connection, query and paperId. ");
+            mysql.rollbackTrans();
+            new DLException(e);
+
+        }
+
+        mysql.endTrans();
+
    }
    
            
