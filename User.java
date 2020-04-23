@@ -130,15 +130,15 @@ public class User
     */
    public ArrayList<String> getUser() {
       try {
-         ArrayList<ArrayList<String>> results = mysql.getData("SELECT userId, lastName, firstName, canReview, expiration, isAdmin, affiliationId FROM users WHERE email = ?", getEmail());
-         setUserId(Integer.parseInt(results.get(2).get(0)));
-         setLastName(results.get(2).get(1));
-         setFirstName(results.get(2).get(2));
-         setCanReview(results.get(2).get(5));
-         setExpiration(results.get(2).get(6));
-         setIsAdmin(Integer.parseInt(results.get(2).get(7)));
-         setAffil(Integer.parseInt(results.get(2).get(8)));
-         return results.get(2);
+         ArrayList<ArrayList<String>> results = mysql.getData("SELECT userId, lastName, firstName, expiration, isAdmin, affiliationId FROM users WHERE email = ?", getEmail());
+
+         setUserId(Integer.parseInt(results.get(0).get(0)));
+         setLastName(results.get(0).get(1));
+         setFirstName(results.get(0).get(2));
+         setExpiration(results.get(0).get(3));
+         setIsAdmin(Integer.parseInt(results.get(0).get(4)));
+         setAffil(Integer.parseInt(results.get(0).get(5)));
+         return results.get(0);
       }
 
       catch (Exception e) {

@@ -15,7 +15,8 @@ public class main {
          mysql.connect();
         // Testing paper class
         Paper paper = new Paper(mysql);
-        paper.getPaper(38);
+        System.out.println("\nTesting Paper:\n");
+        System.out.println("Paper getPaper result: " + paper.getPaper(38));
         // updating
         // String[] var1 = {"subject1", "subject2"};
 //         String[] var2 = {"Jack", "Blake"};
@@ -26,8 +27,10 @@ public class main {
         // Testing user class
         System.out.println("\nTesting User:\n");
         User user = new User(mysql);
-        System.out.println(user.getPapers(1));
-        
+        user.setEmail("stevez@cssconsult.com");
+        System.out.println("User getPapers result: " + user.getPapers(1));
+        System.out.println("User getUser result:   " + user.getUser());
+        System.out.println("User setUser result:   " + user.setUser());
     }
 
 }
