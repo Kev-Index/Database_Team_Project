@@ -222,3 +222,53 @@ Stack Trace: java.lang.NullPointerException
 	at Paper.setPaper(Paper.java:121)
 	at main.main(main.java:21)
 
+New Exception logged at time: 23-04-2020 13:59:50
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:299)
+	at MySQLDatabase.getData(MySQLDatabase.java:151)
+	at User.getPapers(User.java:111)
+	at main.main(main.java:27)
+
+New Exception logged at time: 23-04-2020 13:59:50
+Stack Trace: java.lang.NullPointerException
+	at User.getPapers(User.java:112)
+	at main.main(main.java:27)
+
+New Exception logged at time: 23-04-2020 14:02:27
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.getData(MySQLDatabase.java:166)
+	at User.getPapers(User.java:115)
+	at main.main(main.java:27)
+
+New Exception logged at time: 23-04-2020 14:02:27
+Stack Trace: java.lang.NullPointerException
+	at User.getPapers(User.java:116)
+	at main.main(main.java:27)
+
+New Exception logged at time: 23-04-2020 14:12:57
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.getData(MySQLDatabase.java:166)
+	at User.getPapers(User.java:115)
+	at main.main(main.java:27)
+
+New Exception logged at time: 23-04-2020 14:12:57
+Stack Trace: java.lang.NullPointerException
+	at User.getPapers(User.java:117)
+	at main.main(main.java:27)
+
+New Exception logged at time: 23-04-2020 14:15:44
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.getData(MySQLDatabase.java:167)
+	at User.getPapers(User.java:115)
+	at main.main(main.java:27)
+
+New Exception logged at time: 23-04-2020 14:15:44
+Stack Trace: java.lang.NullPointerException
+	at User.getPapers(User.java:117)
+	at main.main(main.java:27)
+
+New Exception logged at time: 23-04-2020 14:21:52
+Stack Trace: java.lang.NullPointerException
+	at User.getPapers(User.java:116)
+	at main.main(main.java:27)
+

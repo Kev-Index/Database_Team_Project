@@ -47,6 +47,7 @@ public class User
       this.expiration = "";
       this.isAdmin = 0;
       this.affiliationId = 0;
+      mysql.connect();
    }
 
    /**
@@ -63,6 +64,7 @@ public class User
       this.expiration = "";
       this.isAdmin = 0;
       this.affiliationId = 0;
+      mysql.connect();
    }
 
    /**
@@ -80,6 +82,7 @@ public class User
       this.expiration = "";
       this.isAdmin = 0;
       this.affiliationId = 0;
+      mysql.connect();
    }
 
    /**
@@ -98,6 +101,7 @@ public class User
       this.expiration = "";
       this.isAdmin = 0;
       this.affiliationId = 0;
+      mysql.connect();
    }
    
    /**
@@ -109,7 +113,7 @@ public class User
       String query = "SELECT papers.title from papers LEFT JOIN paperauthors ON papers.paperId = paperauthors.paperId LEFT JOIN users ON paperauthors.userId = ? GROUP BY papers.title";
       try {
          ArrayList<ArrayList<String>> results = mysql.getData(query, userId + "");
-         return results.get(2);
+         return results.get(0);
       }
 
       catch (Exception e) {

@@ -141,55 +141,42 @@ public class MySQLDatabase {
      * @param query
      * @param values
      */
-    public ArrayList<ArrayList<String>> getData(String query, String... values) {
-        ArrayList<ArrayList<String>> wrapperList = new ArrayList<ArrayList<String>>();
-        ArrayList<String> valueList = new ArrayList<String>();
-        ArrayList<String> nameList = new ArrayList<String>();
-        ArrayList<String> sizeList = new ArrayList<String>();
+    public ArrayList<ArrayList<String>> getData(String query, String... values) throws DLException {
+        ArrayList<ArrayList<String>> wrapper = new ArrayList<>();
+        ArrayList<String> row_holder = new ArrayList<>();
 
         try {
-            PreparedStatement pstmt = prepare(query, values);
-            ResultSet rs = pstmt.executeQuery();
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-            for (int i = 1; i <= columnsNumber; i++) {
-                nameList.add(rsmd.getColumnName(i));
-                sizeList.add(rsmd.getColumnName(i).length() + "");
-            }
+            PreparedStatement stmt = prepare(query, values);
+            ResultSet resultSet = stmt.executeQuery();
 
-            wrapperList.add((ArrayList<String>) nameList.clone());
-            wrapperList.add((ArrayList<String>) sizeList.clone());
-
-            while (rs.next()) {
-                for (int i = 1; i <= columnsNumber; i++) {
-                    valueList.add(rs.getString(i));
-                    if (Integer.parseInt(wrapperList.get(1).get(i - 1)) < rs.getString(i).length()) {
-                        wrapperList.get(1).set(i - 1, rs.getString(i).length() + "");
-                    }
+            while(resultSet.next()) {
+                for(int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                    row_holder.add(resultSet.getString(i));
                 }
-
-                wrapperList.add((ArrayList<String>) valueList.clone());
-                valueList.clear();
+                wrapper.add(row_holder);
             }
-            pstmt.close();
+            stmt.close();        
+         } catch(SQLException e) {
+            System.out.println("Couldn't retrieve data from the database.");
+            ArrayList<String> logMessages = new ArrayList<String>();
+            logMessages.add("Exception in the getData method");
+            logMessages.add("User: " + id);
+            logMessages.add("SQL statement: " + query);
+
+            throw new DLException(e, logMessages);
+
+        } catch(Exception e) {
+            System.out.println("Couldn't retrieve data from the database.");
+            ArrayList<String> logMessages = new ArrayList<String>();
+            logMessages.add("Exception in the getData method");
+            logMessages.add("User: " + id);
+            logMessages.add("SQL statement: " + query);
+
+            throw new DLException(e, logMessages);
+
         }
 
-        catch (SQLException sqle) {
-            System.out.println("Issue while executing the query. Check your connection and query");
-            sqle.printStackTrace();
-            return null;
-        }
-
-        catch (Exception e) {
-            System.out.println("Issue while executing the query. Check your connection and query");
-            new DLException(e);
-            e.printStackTrace();
-            return null;
-
-        }
-
-        return wrapperList;
-
+        return wrapper;
     } // end of getData
 
     public ArrayList<ArrayList<String>> getData(String sqlQuery, ArrayList<String> vals) throws DLException{
