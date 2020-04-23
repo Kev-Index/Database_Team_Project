@@ -1,0 +1,224 @@
+New Exception logged at time: 22-04-2020 16:29:42
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:344)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:116)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:29:42
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:344)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:119)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:29:42
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:344)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:122)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:29:42
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:344)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:122)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:29:42
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:344)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:134)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:29:42
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:344)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:134)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:29:42
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:344)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:140)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:32:31
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:116)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:32:31
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:119)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:32:31
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:122)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:32:31
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:122)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:32:31
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:134)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:32:31
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:134)
+	at main.main(main.java:21)
+
+New Exception logged at time: 22-04-2020 16:32:31
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:140)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:51:04
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:116)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:51:04
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:119)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:51:04
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:122)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:51:04
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:122)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:51:04
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:134)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:51:04
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:134)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:51:04
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:345)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:140)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:54:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:346)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:116)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:54:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:346)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:119)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:54:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:346)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:122)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:54:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:346)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:122)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:54:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:346)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:134)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:54:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:346)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:134)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 12:54:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:346)
+	at MySQLDatabase.setData(MySQLDatabase.java:244)
+	at Paper.setPaper(Paper.java:140)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 13:10:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:343)
+	at MySQLDatabase.setData(MySQLDatabase.java:241)
+	at Paper.setPaper(Paper.java:121)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 13:10:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:343)
+	at MySQLDatabase.setData(MySQLDatabase.java:241)
+	at Paper.setPaper(Paper.java:121)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 13:11:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:343)
+	at MySQLDatabase.setData(MySQLDatabase.java:241)
+	at Paper.setPaper(Paper.java:121)
+	at main.main(main.java:21)
+
+New Exception logged at time: 23-04-2020 13:11:11
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.executeStmt(MySQLDatabase.java:343)
+	at MySQLDatabase.setData(MySQLDatabase.java:241)
+	at Paper.setPaper(Paper.java:121)
+	at main.main(main.java:21)
+

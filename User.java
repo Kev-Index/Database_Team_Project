@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-/*
+/**
  * @course ISTE.330.01
  * @version Project.01
  * @author Christoforo, Jake

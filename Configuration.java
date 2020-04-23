@@ -1,6 +1,7 @@
 import java.util.Date;
 
-/*
+/**
+ * Configuration class that holds the config information, representing configuration table
  * @course ISTE.330.01
  * @version Project.01
  * @author Christoforo, Jake
@@ -12,7 +13,7 @@ import java.util.Date;
  
 public class Configuration
 {
-
+    // class variables
     private Date submissionOpen;
     private Date submissionClose;
     private String pcEmail;
@@ -22,28 +23,37 @@ public class Configuration
     private String shortName;
     private String logoFile;
 
+    // default constructor
     public Configuration() {
-        this.submissionOpen = null;
+        this.submissionOpen  = null;
         this.submissionClose = null;
-        this.pcEmail = "";
-        this.pcName = "";
-        this.pc2Email = "";
-        this.pc2Name = "";
-        this.shortName = "";
-        this.logoFile = "";
+        this.pcEmail         = "";
+        this.pcName          = "";
+        this.pc2Email        = "";
+        this.pc2Name         = "";
+        this.shortName       = "";
+        this.logoFile        = "";
     }
 
+    // full parameter constructor
     public Configuration(Date submissionOpen, Date submissionClose, String pcEmail, String pcName, String pc2Email,
-            String pc2Name, String shortName, String logoFile) {
-        this.submissionOpen = submissionOpen;
+                         String pc2Name, String shortName, String logoFile) {
+        
+        this.submissionOpen  = submissionOpen;
         this.submissionClose = submissionClose;
-        this.pcEmail = pcEmail;
-        this.pcName = pcName;
-        this.pc2Email = pc2Email;
-        this.pc2Name = pc2Name;
-        this.shortName = shortName;
-        this.logoFile = logoFile;
+        this.pcEmail         = pcEmail;
+        this.pcName          = pcName;
+        this.pc2Email        = pc2Email;
+        this.pc2Name         = pc2Name;
+        this.shortName       = shortName;
+        this.logoFile        = logoFile;
     }
+
+    /////////////////////////
+    // Get and Set methods //
+    /////////////////////////
+
+    // Submission Open Get and Set
 
     public Date getSubmissionOpen() {
         return this.submissionOpen;
@@ -53,6 +63,8 @@ public class Configuration
         this.submissionOpen = submissionOpen;
     }
 
+    // Submission Close Get and Set
+
     public Date getSubmissionClose() {
         return this.submissionClose;
     }
@@ -60,6 +72,8 @@ public class Configuration
     public void setSubmissionClose(Date submissionClose) {
         this.submissionClose = submissionClose;
     }
+
+    // PC1 Email Get and Set
 
     public String getPcEmail() {
         return this.pcEmail;
@@ -69,6 +83,8 @@ public class Configuration
         this.pcEmail = pcEmail;
     }
 
+    // PC1 Name Get and Set
+
     public String getPcName() {
         return this.pcName;
     }
@@ -76,6 +92,8 @@ public class Configuration
     public void setPcName(String pcName) {
         this.pcName = pcName;
     }
+
+    // PC2 Email Get and Set
 
     public String getPc2Email() {
         return this.pc2Email;
@@ -85,6 +103,8 @@ public class Configuration
         this.pc2Email = pc2Email;
     }
 
+    // PC2 Name Get and Set
+
     public String getPc2Name() {
         return this.pc2Name;
     }
@@ -92,6 +112,8 @@ public class Configuration
     public void setPc2Name(String pc2Name) {
         this.pc2Name = pc2Name;
     }
+
+    // Short Name Get and Set
 
     public String getShortName() {
         return this.shortName;
@@ -101,6 +123,8 @@ public class Configuration
         this.shortName = shortName;
     }
 
+    // Logo Get and Set
+
     public String getLogoFile() {
         return this.logoFile;
     }
@@ -108,7 +132,5 @@ public class Configuration
     public void setLogoFile(String logoFile) {
         this.logoFile = logoFile;
     }
-
-    
 
 }

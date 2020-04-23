@@ -15,7 +15,6 @@ public class Paper {
 
    private MySQLDatabase mysql = new MySQLDatabase();
 
-
    // Paper object info
    private int paperId; //paperId
    private String filename; //title
@@ -47,11 +46,12 @@ public class Paper {
     *  @return none
     */
    public Paper() {
-      paperId = 0;
+      paperId = 1;
       filename = "";
       submissionTitle = "";
       submissionAbstract = "";
       submissionType = 0;
+      mysql.connect();
    }
    
            
@@ -61,23 +61,23 @@ public class Paper {
     *  returns all info for a specific paper EXCEPT filename
     *  @return String
     */
-   public void getPaper(int paperId, MySQLDatabase mysqldb) {
-      try
-      {
-      
+   public ArrayList<ArrayList<String>> getPaper(int paperId) {
+      ArrayList<ArrayList<String>> results = null;
+      try {
          String query = "SELECT * FROM papers WHERE paperId = ?";
-         data.add(Integer.toString(getId()));
+         data.add(paperId + "");
          
          //getData() method will print out values
-         mysqldb.getData(query,data);
+         results = mysql.getData(query,data);
+         System.out.println(results);
          data.clear();
-         
       }  
       catch (Exception _e)
       {
          new DLException(_e);
          
       }
+      return results;
    }
   
            
