@@ -13,7 +13,7 @@ import java.util.*;
  
 public class Paper {
 
-   private MySQLDatabase mysql = new MySQLDatabase();
+   private MySQLDatabase mysql;
 
    // Paper object info
    private int paperId; //paperId
@@ -45,13 +45,13 @@ public class Paper {
     *  initializes blank or unharmful values 
     *  @return none
     */
-   public Paper() {
+   public Paper(MySQLDatabase mysql) {
       paperId = 1;
       filename = "";
       submissionTitle = "";
       submissionAbstract = "";
       submissionType = 0;
-      mysql.connect();
+      this.mysql = mysql;
    }
    
            
@@ -69,7 +69,6 @@ public class Paper {
          
          //getData() method will print out values
          results = mysql.getData(query,data);
-         System.out.println(results);
          data.clear();
       }  
       catch (Exception _e)

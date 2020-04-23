@@ -11,8 +11,10 @@
 public class main {
 
     public static void main(String[] args) {
+         MySQLDatabase mysql = new MySQLDatabase();
+         mysql.connect();
         // Testing paper class
-        Paper paper = new Paper();
+        Paper paper = new Paper(mysql);
         paper.getPaper(38);
         // updating
         // String[] var1 = {"subject1", "subject2"};
@@ -23,7 +25,7 @@ public class main {
         
         // Testing user class
         System.out.println("\nTesting User:\n");
-        User user = new User();
+        User user = new User(mysql);
         System.out.println(user.getPapers(1));
         
     }

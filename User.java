@@ -17,6 +17,7 @@ import java.util.Random;
 public class User
 {
    //User object info
+   private MySQLDatabase mysql;
    private int userId;
    private String lastName;
    private String firstName;
@@ -27,7 +28,6 @@ public class User
    private int isAdmin;
    private int affiliationId;
 
-   private MySQLDatabase mysql = new MySQLDatabase();
    Format formatter = new SimpleDateFormat("yyyyMMddHHmmss");
    private static final String LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
    private static final String NUMBERS = "0123456789";
@@ -37,7 +37,7 @@ public class User
    /**
     * default constructor
     */
-   public User() {
+   public User(MySQLDatabase mysql) {
       this.userId = 0;
       this.lastName = "";
       this.firstName = "";
@@ -47,14 +47,14 @@ public class User
       this.expiration = "";
       this.isAdmin = 0;
       this.affiliationId = 0;
-      mysql.connect();
+      this.mysql = mysql;
    }
 
    /**
     * parameterized constructor
     * @param email
     */
-    public User(String email) {
+    public User(String email, MySQLDatabase mysql) {
       this.userId = 0;
       this.lastName = "";
       this.firstName = "";
@@ -64,7 +64,7 @@ public class User
       this.expiration = "";
       this.isAdmin = 0;
       this.affiliationId = 0;
-      mysql.connect();
+      this.mysql = mysql;
    }
 
    /**
@@ -72,7 +72,7 @@ public class User
     * @param email
     * @param pswd
     */
-   public User(String email, String pswd) {
+   public User(String email, String pswd, MySQLDatabase mysql) {
       this.userId = 0;
       this.lastName = "";
       this.firstName = "";
@@ -82,8 +82,9 @@ public class User
       this.expiration = "";
       this.isAdmin = 0;
       this.affiliationId = 0;
-      mysql.connect();
+      this.mysql = mysql;
    }
+   
 
    /**
     * parameterized constructor
@@ -91,7 +92,7 @@ public class User
     * @param email
     * @param pswd
     */
-    public User(int userId, String email, String pswd) {
+    public User(int userId, String email, String pswd, MySQLDatabase mysql) {
       this.userId = userId;
       this.lastName = "";
       this.firstName = "";
@@ -101,7 +102,7 @@ public class User
       this.expiration = "";
       this.isAdmin = 0;
       this.affiliationId = 0;
-      mysql.connect();
+      this.mysql = mysql;
    }
    
    /**

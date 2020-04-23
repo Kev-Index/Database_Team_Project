@@ -272,3 +272,8 @@ Stack Trace: java.lang.NullPointerException
 	at User.getPapers(User.java:116)
 	at main.main(main.java:27)
 
+New Exception logged at time: 23-04-2020 14:54:21
+Stack Trace: java.lang.NullPointerException
+	at Paper.getPaper(Paper.java:71)
+	at main.main(main.java:18)
+
