@@ -30,7 +30,18 @@ public class main {
         user.setEmail("stevez@cssconsult.com");
         System.out.println("User getPapers result: " + user.getPapers(1));
         System.out.println("User getUser result:   " + user.getUser());
-        System.out.println("User setUser result:   " + user.setUser());
+        user.setUser("Zilora","Stephen","stevez@cssconsult.com","Szilora123",78);
+        
+        // Testing login method for user with correct credentials with password that hasn't expired
+        User loginUser1 = new User("Dan.Bogaard@rit.edu","bbce481b0d319a837446124a3edf39be7af063ba",mysql);
+        System.out.println("Login results:   " + loginUser1.login());
+
+        
+        // Testing login method for user with expired password
+        User loginUser2 = new User("dgerman@indiana.edu","706b5dc4aaec8ee2b85487f8a4b471223896446e",mysql);
+        System.out.println("Login results:   " + loginUser2.login());
+
+        
     }
 
 }
