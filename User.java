@@ -247,19 +247,19 @@ public class User
    try {
     ArrayList<ArrayList<String>> results = mysql.getData("SELECT * FROM users WHERE email = ? AND pswd = ?", getEmail(), getPswd()); 
     if (!results.isEmpty()) {
-         String expiration = results.get(2).get(6).substring(0,4) + "/" + results.get(2).get(6).substring(4,6) + "/" + results.get(2).get(6).substring(6,8) + " " + 
-                             results.get(2).get(6).substring(8,10) + ":" + results.get(2).get(6).substring(10,12) + ":" + results.get(2).get(6).substring(12,14); 
+         String expiration = results.get(0).get(6).substring(0,4) + "/" + results.get(0).get(6).substring(4,6) + "/" + results.get(0).get(6).substring(6,8) + " " + 
+                             results.get(0).get(6).substring(8,10) + ":" + results.get(0).get(6).substring(10,12) + ":" + results.get(0).get(6).substring(12,14); 
          Date currentDate = new Date();
          Date expirationDate = new  SimpleDateFormat("yyyy/MM/dd HH:mm").parse(expiration);
-
-         if (expirationDate.compareTo(currentDate) < 0) {
-            setUserId(Integer.parseInt(results.get(2).get(0)));
-            setLastName(results.get(2).get(1));
-            setFirstName(results.get(2).get(2));
-            setCanReview(results.get(2).get(5));
-            setExpiration(results.get(2).get(6));
-            setIsAdmin(Integer.parseInt(results.get(2).get(7)));
-            setAffil(Integer.parseInt(results.get(2).get(8)));
+         
+         if (expirationDate.compareTo(currentDate) > 0) {
+            setUserId(Integer.parseInt(results.get(0).get(0)));
+            setLastName(results.get(0).get(1));
+            setFirstName(results.get(0).get(2));
+            setCanReview(results.get(0).get(5));
+            setExpiration(results.get(0).get(6));
+            setIsAdmin(Integer.parseInt(results.get(0).get(7)));
+            setAffil(Integer.parseInt(results.get(0).get(8)));
             return true;
          }
 
