@@ -281,6 +281,30 @@ public class User
    }
 } // end of login
 
+           
+   /**
+   * Checks authorization to edit
+   * @return boolean
+   */
+   public boolean checkAuthorization(int inId)
+   {
+      boolean valid = false;
+      
+      // 1 is Admin, 0 is Not Admin
+      if (getIsAdmin() == 1)
+      {
+         valid = true;
+      }
+      else
+      {
+         if (inId == getUserId())
+         {
+            valid = true;
+         }
+      }
+      
+      return valid;
+   }
 
    
    //accessors
