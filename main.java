@@ -34,6 +34,7 @@ public class main {
         user.setEmail("stevez@cssconsult.com");
         System.out.println("User getPapers result: " + user.getPapers(1));
         System.out.println("User getUser result:   " + user.getUser());
+        
         user.setUser("Zilora","Stephen","stevez@cssconsult.com","Szilora123",78);
         
         // Testing login method for user with correct credentials with password that hasn't expired
