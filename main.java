@@ -49,6 +49,9 @@ public class main {
         // Testing setPassword method for user with correct credentials with password that hasn't expired
         User setPasswordUser1 = new User("Dan.Bogaard@rit.edu","bbce481b0d319a837446124a3edf39be7af063ba",mysql);
         setPasswordUser1.setPassword("veryStrongPassword");
+        
+        // Testing resetPassword method
+        setPasswordUser1.resetPassword();
     }
 
 }
