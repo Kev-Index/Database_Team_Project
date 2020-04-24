@@ -30,7 +30,7 @@ public class MySQLDatabase {
     // and calls the methods to connect and close the connection
     public MySQLDatabase() {
         id = "root";
-        password = ""; // your password
+        password = "Bwesel7018"; // your password
         uri = "jdbc:mysql://localhost:3306/csm";
         driver = "com.mysql.jdbc.Driver";
 
@@ -151,7 +151,6 @@ public class MySQLDatabase {
             
             while(resultSet.next()) {
                 for(int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-                    System.out.println("Value: " + resultSet.getString(i));
                     row_holder.add(resultSet.getString(i));
                 }
                 wrapper.add(row_holder);
@@ -286,7 +285,6 @@ public class MySQLDatabase {
 
         try {
             int counter = 1;
-            System.out.println("Conn: " + conn);
             PreparedStatement pstmt = conn.prepareStatement(query);
             for (String value : values) {
                 pstmt.setString(counter, value);
@@ -330,9 +328,7 @@ public class MySQLDatabase {
     public int executeStmt(String query, String... values) {
         try {
             PreparedStatement pstmt = prepare(query, values);
-            System.out.println("Prepared statement: " + pstmt);
             int rc = pstmt.executeUpdate();
-            System.out.println("rc: " + rc);
             pstmt.close();
             return rc;
         } catch (SQLException sqle) {

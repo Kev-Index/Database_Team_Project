@@ -272,7 +272,6 @@ public class User
             return false;
          }
     } 
-    System.out.println("results is empty");
     return false;
    }
 
