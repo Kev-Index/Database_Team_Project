@@ -16,7 +16,7 @@ public class Paper {
    private MySQLDatabase mysql;
 
    // Paper object info
-   private int paperId; //paperId
+   private int paperId; //paperId - Not initialized to check if this is a new account in setPaper;
    private String filename; //title
    private String fileId; //fileId
    private String[] subjects; //array of subjectName
@@ -46,13 +46,22 @@ public class Paper {
     *  @return none
     */
    public Paper(MySQLDatabase mysql) {
-      paperId = 1;
       filename = "";
       submissionTitle = "";
       submissionAbstract = "";
       submissionType = 0;
       this.mysql = mysql;
    }
+
+   public Paper(MySQLDatabase mysql, int paperId, String filename, String submissionTitle, 
+               String submissionAbstract, int submissionType) {
+         this.paperId = paperId;
+         this.filename = filename;
+         this.submissionTitle = submissionTitle;
+         this.submissionAbstract = submissionAbstract;
+         this.submissionType = submissionType;
+         this.mysql = mysql;
+      }
    
            
            
@@ -91,7 +100,7 @@ public class Paper {
         int results = 0;
 
         try {
-            if (this.paperId == 0) {
+            if (this.paperId == null) {
 
                 mysql.startTrans();
                 for (int i = 0; i < firstnames.length; i++) {
