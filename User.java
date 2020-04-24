@@ -228,6 +228,8 @@ public class User
             String query = "UPDATE users SET pswd = ?, expiration = ? WHERE email = ?";
             int results = mysql.setData(query, newPassword, "20250101000000", getEmail());
             System.out.println("Query OK, " + results + " rows affected");
+         } else {
+            System.out.println("login() failed");
          }
    
        }
@@ -268,7 +270,7 @@ public class User
             return false;
          }
     } 
-
+    System.out.println("results is empty");
     return false;
    }
 

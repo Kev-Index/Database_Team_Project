@@ -30,7 +30,7 @@ public class MySQLDatabase {
     // and calls the methods to connect and close the connection
     public MySQLDatabase() {
         id = "root";
-        password = "Bwesel7018"; // your password
+        password = "tck78Gds"; // your password
         uri = "jdbc:mysql://localhost:3306/csm";
         driver = "com.mysql.jdbc.Driver";
 

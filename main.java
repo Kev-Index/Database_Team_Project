@@ -41,7 +41,9 @@ public class main {
         User loginUser2 = new User("dgerman@indiana.edu","706b5dc4aaec8ee2b85487f8a4b471223896446e",mysql);
         System.out.println("Login results:   " + loginUser2.login());
 
-        
+        // Testing setPassword method for user with correct credentials with password that hasn't expired
+        User setPasswordUser1 = new User("Dan.Bogaard@rit.edu","bbce481b0d319a837446124a3edf39be7af063ba",mysql);
+        setPasswordUser1.setPassword("veryStrongPassword");
     }
 
 }
