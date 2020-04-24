@@ -206,8 +206,8 @@ public class User
          System.out.println("Query OK, " + results + " rows affected");
          
          // @TEST ONLY
-         System.out.println("The new password is " + newPassword);
-
+         Mail email = new Mail(newPassword, "test.dan@sausey.com");
+         email.sendMessage();
       }
 
       catch (Exception e) {
