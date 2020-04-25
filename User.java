@@ -208,7 +208,7 @@ public class User
          System.out.println("Query OK, " + results + " rows affected");
          
          // @TEST ONLY
-         Mail email = new Mail(newPassword, "test.dan@sausey.com");
+         Mail email = new Mail(newPassword, getEmail());
          email.sendMessage();
       }
 

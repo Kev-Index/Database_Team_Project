@@ -230,3 +230,23 @@ Stack Trace: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for leng
 	at Paper.setPaper(Paper.java:112)
 	at main.main(main.java:27)
 
+New Exception logged at time: 24-04-2020 21:07:23
+Stack Trace: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:458)
+	at Paper.setPaper(Paper.java:149)
+	at main.main(main.java:27)
+
+New Exception logged at time: 24-04-2020 21:09:52
+Stack Trace: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:458)
+	at Paper.setPaper(Paper.java:149)
+	at main.main(main.java:27)
+

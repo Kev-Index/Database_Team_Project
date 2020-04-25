@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1972370c-7845-41c2-a5eb-a4d4cd566221" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MySQLDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/MySQLDatabase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MySQLDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/MySQLDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mail$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Mail$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mail.class" beforeDir="false" afterPath="$PROJECT_DIR$/Mail.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Paper.class" beforeDir="false" afterPath="$PROJECT_DIR$/Paper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Paper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main.java" afterDir="false" />
@@ -22,10 +24,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MySQLDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="150" column="12" lean-forward="true" selection-start-line="150" selection-start-column="12" selection-end-line="150" selection-end-column="12" />
+            <state relative-caret-position="431">
+              <caret line="327" column="59" selection-start-line="327" selection-start-column="59" selection-end-line="327" selection-end-column="59" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <element signature="method#getData#0;class#MySQLDatabase#0" />
+                <element signature="method#getData#1;class#MySQLDatabase#0" />
+                <element signature="method#setData#1;class#MySQLDatabase#0" />
+                <element signature="method#setData#2;class#MySQLDatabase#0" />
+                <element signature="method#prepare#0;class#MySQLDatabase#0" />
+                <element signature="method#prepare#1;class#MySQLDatabase#0" />
+                <element signature="method#executeStmt#0;class#MySQLDatabase#0" />
+                <element signature="method#executeStmt#1;class#MySQLDatabase#0" />
+                <element signature="method#startTrans#0;class#MySQLDatabase#0" />
               </folding>
             </state>
           </provider>
@@ -34,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="578">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
             </state>
           </provider>
         </entry>
@@ -43,26 +54,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Paper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="122" column="13" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
+            <state relative-caret-position="413">
+              <caret line="125" column="36" selection-start-line="125" selection-start-column="36" selection-end-line="125" selection-end-column="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#6163#6164#0" expanded="true" />
-                <element signature="e#6236#6237#0" expanded="true" />
-                <element signature="e#6315#6316#0" expanded="true" />
-                <element signature="e#6383#6384#0" expanded="true" />
-                <element signature="e#6449#6450#0" expanded="true" />
-                <element signature="e#6517#6518#0" expanded="true" />
-                <element signature="e#6589#6590#0" expanded="true" />
-                <element signature="e#6659#6660#0" expanded="true" />
-                <element signature="e#6753#6754#0" expanded="true" />
-                <element signature="e#6862#6863#0" expanded="true" />
-                <element signature="e#6983#6984#0" expanded="true" />
-                <element signature="e#7085#7086#0" expanded="true" />
-                <element signature="e#7173#7174#0" expanded="true" />
-                <element signature="e#7263#7264#0" expanded="true" />
-                <element signature="e#7361#7362#0" expanded="true" />
-                <element signature="e#7455#7456#0" expanded="true" />
+                <element signature="e#7064#7065#0" expanded="true" />
+                <element signature="e#7137#7138#0" expanded="true" />
+                <element signature="e#7216#7217#0" expanded="true" />
+                <element signature="e#7284#7285#0" expanded="true" />
+                <element signature="e#7350#7351#0" expanded="true" />
+                <element signature="e#7418#7419#0" expanded="true" />
+                <element signature="e#7490#7491#0" expanded="true" />
+                <element signature="e#7560#7561#0" expanded="true" />
+                <element signature="e#7654#7655#0" expanded="true" />
+                <element signature="e#7763#7764#0" expanded="true" />
+                <element signature="e#7884#7885#0" expanded="true" />
+                <element signature="e#7986#7987#0" expanded="true" />
+                <element signature="e#8074#8075#0" expanded="true" />
+                <element signature="e#8164#8165#0" expanded="true" />
+                <element signature="e#8262#8263#0" expanded="true" />
+                <element signature="e#8356#8357#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -100,8 +111,8 @@
         <option value="$PROJECT_DIR$/Types.java" />
         <option value="$PROJECT_DIR$/User.java" />
         <option value="$PROJECT_DIR$/Configuration.java" />
-        <option value="$PROJECT_DIR$/main.java" />
         <option value="$PROJECT_DIR$/MySQLDatabase.java" />
+        <option value="$PROJECT_DIR$/main.java" />
         <option value="$PROJECT_DIR$/Paper.java" />
       </list>
     </option>
@@ -134,7 +145,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587775982790" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587778099029" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -164,12 +175,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1587582047003</updated>
-      <workItem from="1587582048768" duration="9058000" />
+      <workItem from="1587582048768" duration="10723000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9058000" />
+    <option name="totallyTimeSpent" value="10723000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="821" extended-state="0" />
@@ -296,16 +307,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MySQLDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="150" column="12" lean-forward="true" selection-start-line="150" selection-start-column="12" selection-end-line="150" selection-end-column="12" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -316,35 +317,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MySQLDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="327" column="59" selection-start-line="327" selection-start-column="59" selection-end-line="327" selection-end-column="59" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="method#getData#0;class#MySQLDatabase#0" />
+            <element signature="method#getData#1;class#MySQLDatabase#0" />
+            <element signature="method#setData#1;class#MySQLDatabase#0" />
+            <element signature="method#setData#2;class#MySQLDatabase#0" />
+            <element signature="method#prepare#0;class#MySQLDatabase#0" />
+            <element signature="method#prepare#1;class#MySQLDatabase#0" />
+            <element signature="method#executeStmt#0;class#MySQLDatabase#0" />
+            <element signature="method#executeStmt#1;class#MySQLDatabase#0" />
+            <element signature="method#startTrans#0;class#MySQLDatabase#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="578">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Paper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="122" column="13" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
+        <state relative-caret-position="413">
+          <caret line="125" column="36" selection-start-line="125" selection-start-column="36" selection-end-line="125" selection-end-column="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#6163#6164#0" expanded="true" />
-            <element signature="e#6236#6237#0" expanded="true" />
-            <element signature="e#6315#6316#0" expanded="true" />
-            <element signature="e#6383#6384#0" expanded="true" />
-            <element signature="e#6449#6450#0" expanded="true" />
-            <element signature="e#6517#6518#0" expanded="true" />
-            <element signature="e#6589#6590#0" expanded="true" />
-            <element signature="e#6659#6660#0" expanded="true" />
-            <element signature="e#6753#6754#0" expanded="true" />
-            <element signature="e#6862#6863#0" expanded="true" />
-            <element signature="e#6983#6984#0" expanded="true" />
-            <element signature="e#7085#7086#0" expanded="true" />
-            <element signature="e#7173#7174#0" expanded="true" />
-            <element signature="e#7263#7264#0" expanded="true" />
-            <element signature="e#7361#7362#0" expanded="true" />
-            <element signature="e#7455#7456#0" expanded="true" />
+            <element signature="e#7064#7065#0" expanded="true" />
+            <element signature="e#7137#7138#0" expanded="true" />
+            <element signature="e#7216#7217#0" expanded="true" />
+            <element signature="e#7284#7285#0" expanded="true" />
+            <element signature="e#7350#7351#0" expanded="true" />
+            <element signature="e#7418#7419#0" expanded="true" />
+            <element signature="e#7490#7491#0" expanded="true" />
+            <element signature="e#7560#7561#0" expanded="true" />
+            <element signature="e#7654#7655#0" expanded="true" />
+            <element signature="e#7763#7764#0" expanded="true" />
+            <element signature="e#7884#7885#0" expanded="true" />
+            <element signature="e#7986#7987#0" expanded="true" />
+            <element signature="e#8074#8075#0" expanded="true" />
+            <element signature="e#8164#8165#0" expanded="true" />
+            <element signature="e#8262#8263#0" expanded="true" />
+            <element signature="e#8356#8357#0" expanded="true" />
           </folding>
         </state>
       </provider>
