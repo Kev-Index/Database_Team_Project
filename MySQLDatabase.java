@@ -30,7 +30,7 @@ public class MySQLDatabase {
     // and calls the methods to connect and close the connection
     public MySQLDatabase() {
         id = "root";
-        password = "tck78Gds"; // your password
+        password = "Bwesel7018"; // your password
         uri = "jdbc:mysql://localhost:3306/csm";
         driver = "com.mysql.jdbc.Driver";
 
@@ -148,7 +148,7 @@ public class MySQLDatabase {
         try {
             PreparedStatement stmt = prepare(query, values);
             ResultSet resultSet = stmt.executeQuery();
-
+            
             while(resultSet.next()) {
                 for(int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
                     row_holder.add(resultSet.getString(i));
@@ -157,6 +157,7 @@ public class MySQLDatabase {
             }
             stmt.close();        
          } catch(SQLException e) {
+            e.printStackTrace();
             System.out.println("Couldn't retrieve data from the database.");
             ArrayList<String> logMessages = new ArrayList<String>();
             logMessages.add("Exception in the getData method");
@@ -166,6 +167,7 @@ public class MySQLDatabase {
             throw new DLException(e, logMessages);
 
         } catch(Exception e) {
+            e.printStackTrace();
             System.out.println("Couldn't retrieve data from the database.");
             ArrayList<String> logMessages = new ArrayList<String>();
             logMessages.add("Exception in the getData method");
@@ -326,9 +328,7 @@ public class MySQLDatabase {
     public int executeStmt(String query, String... values) {
         try {
             PreparedStatement pstmt = prepare(query, values);
-            System.out.println("Prepared statement: " + pstmt);
             int rc = pstmt.executeUpdate();
-            System.out.println("rc: " + rc);
             pstmt.close();
             return rc;
         } catch (SQLException sqle) {

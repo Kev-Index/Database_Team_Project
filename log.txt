@@ -317,3 +317,265 @@ Stack Trace: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for leng
 	at User.getUser(User.java:135)
 	at main.main(main.java:30)
 
+New Exception logged at time: 24-04-2020 14:07:16
+Exception in the getData method
+User: root
+SQL statement: SELECT userId, lastName, firstName, expiration, isAdmin, affiliationId FROM users WHERE email = ?
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:286)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+
+New Exception logged at time: 24-04-2020 14:07:16
+Stack Trace: DLException: java.lang.NullPointerException
+	at MySQLDatabase.getData(MySQLDatabase.java:175)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+Caused by: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:286)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	... 2 more
+
+New Exception logged at time: 24-04-2020 14:12:19
+Exception in the getData method
+User: root
+SQL statement: SELECT userId, lastName, firstName, email, canReview, expiration, isAdmin, affiliationId FROM USERS WHERE userId = ?
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:286)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+
+New Exception logged at time: 24-04-2020 14:12:20
+Stack Trace: DLException: java.lang.NullPointerException
+	at MySQLDatabase.getData(MySQLDatabase.java:175)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+Caused by: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:286)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	... 2 more
+
+New Exception logged at time: 24-04-2020 14:14:33
+Exception in the getData method
+User: root
+SQL statement: SELECT userId, lastName, firstName, email, canReview, expiration, isAdmin, affiliationId FROM USERS WHERE userId = ?
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:288)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+
+New Exception logged at time: 24-04-2020 14:14:33
+Stack Trace: DLException: java.lang.NullPointerException
+	at MySQLDatabase.getData(MySQLDatabase.java:177)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+Caused by: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:288)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	... 2 more
+
+New Exception logged at time: 24-04-2020 14:15:45
+Exception in the getData method
+User: root
+SQL statement: SELECT userId, lastName, firstName, email, canReview, expiration, isAdmin, affiliationId FROM USERS WHERE userId = ?
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:289)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+
+New Exception logged at time: 24-04-2020 14:15:45
+Stack Trace: DLException: java.lang.NullPointerException
+	at MySQLDatabase.getData(MySQLDatabase.java:177)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+Caused by: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:289)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	... 2 more
+
+New Exception logged at time: 24-04-2020 14:17:12
+Stack Trace: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:458)
+	at User.getUser(User.java:135)
+	at main.main(main.java:36)
+
+New Exception logged at time: 24-04-2020 14:23:05
+Exception in the getData method
+User: root
+SQL statement: SELECT userId, lastName, firstName, email, canReview, expiration, isAdmin, affiliationId FROM USERS WHERE userId = ?
+Stack Trace: java.sql.SQLException: Illegal operation on empty result set.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.checkRowPos(ResultSetImpl.java:780)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5204)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5127)
+	at MySQLDatabase.getData(MySQLDatabase.java:151)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+
+New Exception logged at time: 24-04-2020 14:23:05
+Stack Trace: DLException: java.sql.SQLException: Illegal operation on empty result set.
+	at MySQLDatabase.getData(MySQLDatabase.java:167)
+	at User.getUser(User.java:133)
+	at main.main(main.java:36)
+Caused by: java.sql.SQLException: Illegal operation on empty result set.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.checkRowPos(ResultSetImpl.java:780)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5204)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5127)
+	at MySQLDatabase.getData(MySQLDatabase.java:151)
+	... 2 more
+
+New Exception logged at time: 24-04-2020 14:23:46
+Stack Trace: java.lang.NumberFormatException: For input string: "20250101000000"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Integer.parseInt(Integer.java:652)
+	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+	at User.getUser(User.java:140)
+	at main.main(main.java:37)
+
+New Exception logged at time: 24-04-2020 14:24:04
+Exception in the getData method
+User: root
+SQL statement: SELECT userId, lastName, firstName, email, canReview, expiration, isAdmin, affiliationId FROM USERS WHERE userId = ?
+Stack Trace: java.sql.SQLException: Before start of result set
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.checkRowPos(ResultSetImpl.java:780)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5204)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5127)
+	at MySQLDatabase.getData(MySQLDatabase.java:151)
+	at User.getUser(User.java:133)
+	at main.main(main.java:37)
+
+New Exception logged at time: 24-04-2020 14:24:04
+Stack Trace: DLException: java.sql.SQLException: Before start of result set
+	at MySQLDatabase.getData(MySQLDatabase.java:167)
+	at User.getUser(User.java:133)
+	at main.main(main.java:37)
+Caused by: java.sql.SQLException: Before start of result set
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.checkRowPos(ResultSetImpl.java:780)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5204)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5127)
+	at MySQLDatabase.getData(MySQLDatabase.java:151)
+	... 2 more
+
+New Exception logged at time: 24-04-2020 14:27:45
+Exception in the getData method
+User: root
+SQL statement: SELECT userId, lastName, firstName, email, canReview, expiration, isAdmin, affiliationId FROM USERS WHERE userId = ?
+Stack Trace: java.sql.SQLException: Before start of result set
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.checkRowPos(ResultSetImpl.java:780)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5204)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5127)
+	at MySQLDatabase.getData(MySQLDatabase.java:152)
+	at User.getUser(User.java:133)
+	at main.main(main.java:37)
+
+New Exception logged at time: 24-04-2020 14:27:45
+Stack Trace: DLException: java.sql.SQLException: Before start of result set
+	at MySQLDatabase.getData(MySQLDatabase.java:168)
+	at User.getUser(User.java:133)
+	at main.main(main.java:37)
+Caused by: java.sql.SQLException: Before start of result set
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.checkRowPos(ResultSetImpl.java:780)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5204)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5127)
+	at MySQLDatabase.getData(MySQLDatabase.java:152)
+	... 2 more
+
+New Exception logged at time: 24-04-2020 14:28:39
+Exception in the getData method
+User: root
+SQL statement: SELECT userId, lastName, firstName, email, canReview, expiration, isAdmin, affiliationId FROM USERS WHERE userId = 1
+Stack Trace: java.sql.SQLException: Before start of result set
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.checkRowPos(ResultSetImpl.java:780)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5204)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5127)
+	at MySQLDatabase.getData(MySQLDatabase.java:152)
+	at User.getUser(User.java:133)
+	at main.main(main.java:37)
+
+New Exception logged at time: 24-04-2020 14:28:39
+Stack Trace: DLException: java.sql.SQLException: Before start of result set
+	at MySQLDatabase.getData(MySQLDatabase.java:168)
+	at User.getUser(User.java:133)
+	at main.main(main.java:37)
+Caused by: java.sql.SQLException: Before start of result set
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.checkRowPos(ResultSetImpl.java:780)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5204)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5127)
+	at MySQLDatabase.getData(MySQLDatabase.java:152)
+	... 2 more
+
+New Exception logged at time: 24-04-2020 14:29:30
+Stack Trace: java.lang.NumberFormatException: For input string: "20250101000000"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Integer.parseInt(Integer.java:652)
+	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+	at User.getUser(User.java:140)
+	at main.main(main.java:37)
+
+New Exception logged at time: 24-04-2020 14:31:10
+Stack Trace: java.lang.NumberFormatException: For input string: "20250101000000"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Integer.parseInt(Integer.java:652)
+	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+	at User.getUser(User.java:140)
+	at main.main(main.java:37)
+
+New Exception logged at time: 24-04-2020 16:14:31
+Exception in the getData method
+User: root
+SQL statement: SELECT userId, lastName, firstName, email, canReview, expiration, isAdmin, affiliationId FROM USERS WHERE userId = ?
+Stack Trace: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:290)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	at User.getUser(User.java:133)
+	at main.main(main.java:37)
+
+New Exception logged at time: 24-04-2020 16:14:31
+Stack Trace: DLException: java.lang.NullPointerException
+	at MySQLDatabase.getData(MySQLDatabase.java:178)
+	at User.getUser(User.java:133)
+	at main.main(main.java:37)
+Caused by: java.lang.NullPointerException
+	at MySQLDatabase.prepare(MySQLDatabase.java:290)
+	at MySQLDatabase.getData(MySQLDatabase.java:149)
+	... 2 more
+

@@ -23,7 +23,7 @@ public class User
    private String firstName;
    private String email;
    private String pswd;
-   private String canReview;
+   private String canReview; // default is false for security purposes
    private String expiration;
    private int isAdmin;
    private int affiliationId;
@@ -130,19 +130,21 @@ public class User
     */
    public ArrayList<String> getUser() {
       try {
-         ArrayList<ArrayList<String>> results = mysql.getData("SELECT userId, lastName, firstName, expiration, isAdmin, affiliationId FROM users WHERE email = ?", getEmail());
+         ArrayList<ArrayList<String>> results = mysql.getData("SELECT userId, lastName, firstName, email, canReview, expiration, isAdmin, affiliationId FROM USERS WHERE userId = ?", getUserId() + "");
 
          setUserId(Integer.parseInt(results.get(0).get(0)));
          setLastName(results.get(0).get(1));
          setFirstName(results.get(0).get(2));
-         setExpiration(results.get(0).get(3));
-         setIsAdmin(Integer.parseInt(results.get(0).get(4)));
-         setAffil(Integer.parseInt(results.get(0).get(5)));
+         setEmail(results.get(0).get(3));
+         setCanReview(results.get(0).get(4));
+         setExpiration(results.get(0).get(5));
+         setIsAdmin(Integer.parseInt(results.get(0).get(6)));
+         setAffil(Integer.parseInt(results.get(0).get(7)));
          return results.get(0);
       }
 
       catch (Exception e) {
-         System.out.println("Info retrive failed. Check your connection and email. ");
+         System.out.println("Info retrive failed. Check your connection and id. ");
          new DLException(e);
          return null;
        }
@@ -270,7 +272,6 @@ public class User
             return false;
          }
     } 
-    System.out.println("results is empty");
     return false;
    }
 
