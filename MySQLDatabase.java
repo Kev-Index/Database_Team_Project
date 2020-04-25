@@ -333,6 +333,7 @@ public class MySQLDatabase {
             return rc;
         } catch (SQLException sqle) {
             System.out.println("Issue while executing the query. Check your connection and query");
+            new DLException(sqle);
             return -1;
         } catch (Exception e) {
             System.out.println("Issue while executing the query. Check your connection and query");
