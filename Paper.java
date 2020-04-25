@@ -4,9 +4,8 @@
  * @author Pallotta, Andrea
  *         Christoforo, Jake
  *         Liu, Kevin
-
-Sause, Daniel
-Wesel, Blake
+ *         Sause, Daniel
+ *         Wesel, Blake
  */
 
 import java.util.*;
@@ -123,7 +122,7 @@ public class Paper {
                             paperId+"", resultsSelect.get(0).get(0));
 
                     System.out.println("Insert paperauthors Query OK, " + results + " rows affected");
-                    // if no results
+                    // rollback if user doesn't exists
                     if ( results == 0) {
                         System.out.println("This user: " + lastnames[i] +
                                 "," + firstnames[i] + " Does not exist. Please have this user create an account.");
@@ -132,19 +131,23 @@ public class Paper {
                 }
 
             } else {
-
+                // delete current paper and paper subjects entries
                 results = mysql.setData("DELETE FROM paperauthors where paperId=?", paperId+"");
                 System.out.println("Query OK, " + results + " rows affected");
 
                 results = mysql.setData("DELETE FROM paperSubjects where paperId=?", paperId+"");
 
                 for (int i=0; i< firstnames.length; i++) {
+                    // get user ID
                     ArrayList<ArrayList<String>> resultsSelect = mysql.getData("(SELECT userId from users where firstname=? AND lastname=? LIMIT 1)", firstnames[i], lastnames[i]);
+                    // insert into paper authorss
                     results = mysql.setData(
                             "INSERT INTO paperauthors (paperId, userId) VALUES (?, ?)",
                             paperId+"", resultsSelect.get(0).get(0));
 
                     System.out.println("Insert paperauthors Query OK, " + results + " rows affected");
+
+                    // rollback if user doens't exist
                     if ( results == 0) {
                         System.out.println("This user: " + lastnames[i] +
                                 "," + firstnames[i] + " Does not exist. Please have this user create an account.");
@@ -152,12 +155,15 @@ public class Paper {
                     }
                 }
 
+                // insert subject Id's with paper Id's in papersubjects table
                 for(int i =0; i<subjects.length; i++) {
+                    // get subjectId
                     ArrayList<ArrayList<String>> resultsSelect = mysql.getData("(SELECT subjectId FROM _subjects WHERE subjectName=? LIMIT 1)", subjects[i]);
+                    // insert subjectID with paper ID
                     results = mysql.setData("INSERT INTO papersubjects (paperId, subjectId) VALUES (?,?)", paperId+"", resultsSelect.get(0).get(0));
                     System.out.println("Insert paper subjects Query OK, " + results + " rows affected");
                 }
-
+                // update the papers table
                 results = mysql.setData("UPDATE papers SET title=?, abstract=?, fileId=? WHERE paperId=?",submissionTitle, submissionAbstract,filename,paperId+"");
                 System.out.println("Update papers Query OK, " + results + " rows affected");
             }

@@ -8,10 +8,10 @@ import java.util.Random;
  * @course ISTE.330.01
  * @version Project.01
  * @author Christoforo, Jake
-           Liu, Kevin 
-           Pallotta, Andrea
-           Sause, Daniel
-           Wesel, Blake
+ *         Liu, Kevin
+ *         Pallotta, Andrea
+ *         Sause, Daniel
+ *         Wesel, Blake
  */
  
 public class User
