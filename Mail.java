@@ -1,3 +1,13 @@
+/**
+ * @course ISTE.330.01
+ * @version Project.01
+ * @author Pallotta, Andrea
+ *         Christoforo, Jake
+           Liu, Kevin 
+           Sause, Daniel
+           Wesel, Blake
+ */
+
 import java.util.*; 
 import javax.mail.*; 
 import javax.mail.internet.*; 
@@ -7,18 +17,28 @@ import javax.mail.Transport;
 
 public class Mail {
 
+   // email info
    private String password = "";
    private String recipient = "";
    private String sender = "iste330@gmail.com";
    private String senderPassword = "emailPassword";
    private String host = "smtp.gmail.com";
    
+   /**
+    * Constructor for Mail class- sets password to send and recipient email
+    * @param password
+    * @param recipient
+    */
    public Mail(String password, String recipient) {
       this.password = password;
       this.recipient = recipient;
    }
    
-   public void sendMessage() {
+   /**
+    * sendMessage method that constructs the email and sends it to the 
+    */
+   public void sendMessage() throws DLException{
+      // adjust mail properties
       Properties properties = System.getProperties();
       properties.put("mail.smtp.port", "587");
       properties.put("mail.smtp.starttls.enable", "true");
@@ -52,9 +72,8 @@ public class Mail {
          System.out.println("Mail successfully sent");
          
       } catch (MessagingException mex) { 
-         mex.printStackTrace(); 
+         new DLException(mex);
+         System.out.println("Something went wrong in sending an email");
       } 
    }
-   
-   
 }
